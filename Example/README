@@ -1,0 +1,24 @@
+The file simSeq.phy contains an example alignment in which a recombination event occured. This is one of the simulated alignments as found in the 
+"Evolutionary Bioinformatics" article. The breakpoint should be found at position 599.
+To use phyml_multi, type: 
+
+For use with the phylo-HMM: 
+phyml_multi simSeqs.phy 0 i 1 0 HKY e e 4 e BIONJ y y y 2
+
+and then to see the segmentation: 
+python PartitioningHMM.py simSeqs.phy_phyml_siteLks.txt 0.997973
+or : 
+python PartitioningMM.py simSeqs.phy_phyml_siteLks.txt 
+
+
+For use with the mixture model: 
+phyml_multi simSeqs.phy 0 i 1 0 HKY e e 4 e BIONJ y y n 2
+
+and then to see the segmentation:
+python PartitioningMM.py simSeqs.phy_phyml_siteLks.txt
+
+This should give you the right answer, in a matter of a few minutes on a single desktop computer.
+
+For any question, contact boussau@biomserv.univ-lyon1.fr
+
+
