@@ -2,9 +2,12 @@
 #! /usr/bin/env python
 
 import sys
+
 import math
 import os
+from functools import reduce
 
+import lexique
 
 #THREE USEFUL FUNCTIONS
 def logsumexp(l): #computes the logarithm of the sum of exponentials
@@ -13,7 +16,7 @@ def logsumexp(l): #computes the logarithm of the sum of exponentials
 
 def calc_pk(l,ls,k):
     " Retourne P(P_k|S) normalise"
-    sl=logsumexp(map(lambda x: x[0]-x[1], zip(l,ls)))
+    sl=logsumexp(list(map(lambda x: x[0]-x[1], zip(l,ls))))
     return(l[k-1]-ls[k-1]-sl)
 
 def max_list(l):
@@ -35,8 +38,8 @@ file=argv[0]
 out=argv[0].split('.')[0]+'.mat'
 try:
     f=open(file, 'r')
-except IOError, e:
-    print "Unknown file: ",file
+except IOError:
+    print("Unknown file: ",file)
     sys.exit()
 
 i=0
@@ -45,8 +48,8 @@ for l in f:
 
 try:
     fout=open(out, 'w')
-except IOError, e:
-    print "Unknown file: ",out
+except IOError:
+    print("Unknown file: ",out)
     sys.exit()
 
 length=i-1
@@ -56,8 +59,8 @@ f.close()
 
 try:
     f=open(file, 'r')
-except IOError, e:
-    print "Unknown file: ",file
+except IOError:
+    print("Unknown file: ",file)
     sys.exit()
 
 i=0
@@ -67,7 +70,7 @@ summ=0
 for l in f:
     if i==0:
         liste=l.split()
-        numMod=(len(liste)-1)/2
+        numMod=round((len(liste)-1)/2)
         mod=numMod * [0]
         vitmod=numMod * [0]
         fbmod=numMod * [0]
@@ -92,14 +95,14 @@ f.close()
 fout.close()
 
 if (numMod==1) :
-    print summ
+    print(summ)
     
 
 else :
     for j in range(numMod):
         lineMod+="#"+str(j)+"\t"
 
-    print lineMod
+    print(lineMod)
 
 
  
@@ -112,11 +115,10 @@ else :
     nb_cl=100
     nshuffle=50
 
-    import lexique
     #lx=lexique.Lexique(str="#0 #1 #2 #3 #4")
     #lx=lexique.Lexique(str="#0 #1 #2")
     lx=lexique.Lexique(str=lineMod)
-    print lx
+    print(lx)
     import matrice
     m=matrice.Matrice(fic=file)
 
@@ -127,7 +129,7 @@ else :
 
     f=open(file+"PartitionProbabilities", 'w')
     for x in res:
-	f.write("%f\t"%(x))
+      f.write("%f\t"%(x))
 
     f.write("\n")
     f.flush()
@@ -135,15 +137,14 @@ else :
     totals=nb_cl * [0]
 
     for n in range(nshuffle):
-	print "replicate "+str(n)+"\r"
-	#for i in range(1,nb_cl+1):
-	m.shuffle()
-	#ress=lx.probability(m,nb_cl)
+        #for i in range(1,nb_cl+1):
+        m.shuffle()
+        #ress=lx.probability(m,nb_cl)
         ress=lx.log_likelihood(m,nb_cl)
-	for i in range(1,nb_cl+1):
-		temp = calc_pk(res,ress,i)
-		totals[i-1]=totals[i-1]+temp
-		f.write("%f\t"%(temp))
+        for i in range(1,nb_cl+1):
+        	temp = calc_pk(res,ress,i)
+        	totals[i-1]=totals[i-1]+temp
+        	f.write("%f\t"%(temp))
         
         f.write("\n")
         f.flush()
@@ -151,11 +152,11 @@ else :
     f.close()
 
     for i in range(1,nb_cl+1):
-	totals[i-1] = totals[i-1]/nshuffle
+        totals[i-1] = totals[i-1]/nshuffle
 
     f=open(file+"NormalizedPartitionProbabilities", 'w')
     for i in range(1,nb_cl+1):
-	f.write("%f\t"%(totals[i-1]))
+        f.write("%f\t"%(totals[i-1]))
 
 
     f.close()
@@ -176,8 +177,8 @@ else :
     # FOR PDF OUTPUT, UNCOMMENT THE NEXT LINE
     #os.system("ps2pdf "+file.split('.')[0]+"_Partitioned.ps")
     if NumPart >1:
-        print NumPart
-        print str(ps[NumPart-1])
+        print(NumPart)
+        print(str(ps[NumPart-1]))
         liste=str(ps[NumPart-1]).split(" XXX ")
 
     f=open(file.split('.')[0]+"_PartitionNumbers", 'w')
@@ -189,7 +190,7 @@ else :
     f=open(file.split('.')[0]+"_PartitionBestNumber", 'w')
     f.write("%d partitions\t\n"%(NumPart))
     for i in range(NumPart):
-	f.write(liste[i]+"\n")
+       f.write(liste[i]+"\n")
 
     f.close()
 

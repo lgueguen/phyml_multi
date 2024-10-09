@@ -1,12 +1,12 @@
 /*
 
-  PHYML :  a program that  computes maximum likelihood  phylogenies from
-  DNA or AA homologous sequences 
+PHYML :  a program that  computes maximum likelihood  phylogenies from
+DNA or AA homologous sequences 
 
-  Copyright (C) Stephane Guindon. Oct 2003 onward
+Copyright (C) Stephane Guindon. Oct 2003 onward
 
-  All parts of  the source except where indicated  are distributed under
-  the GNU public licence.  See http://www.opensource.org for details.
+All parts of  the source except where indicated  are distributed under
+the GNU public licence.  See http://www.opensource.org for details.
 
 */
 
@@ -107,9 +107,9 @@ void Usage()
          LINE"\n\tnumber of trees"
 	 FLAT"\t\tHow many trees (ex:4) ? ");
 
-  printf(  FLAT"\n\tExamples\n"
-           FLAT"\tDNA sequences, no HMM : "BOLD"  ./phyml_multi seqs1 0 i 2 0 HKY 4.0 e 1 1.0 BIONJ y n n 2\n"
-           FLAT"\n\tAA sequences, HMM :  "BOLD"  ./phyml_multi seqs2 1 i 1 5 JTT 0.0 4 1.0 BIONJ n n y 3\n"FLAT);
+printf(  FLAT"\n\tExamples\n"
+	 FLAT"\tDNA sequences, no HMM : "BOLD"  ./phyml_multi seqs1 0 i 2 0 HKY 4.0 e 1 1.0 BIONJ y n n 2\n"
+	 FLAT"\n\tAA sequences, HMM :  "BOLD"  ./phyml_multi seqs2 1 i 1 5 JTT 0.0 4 1.0 BIONJ n n y 3\n"FLAT);
   Exit("");
 }
 
@@ -202,9 +202,9 @@ option *Get_Input(int argc, char **argv)
     else
       {
 	if ((input->mod->whichmodel == 2)|| 
-            (input->mod->whichmodel == 4)||  
-            (input->mod->whichmodel == 5)||
-            (input->mod->whichmodel == 6))
+	   (input->mod->whichmodel == 4)||  
+	   (input->mod->whichmodel == 5)||
+	   (input->mod->whichmodel == 6))
 	  printf("ts/tv ratio : \t\t\t\t\t %f\n", input->mod->kappa);
       }
   }
@@ -568,83 +568,83 @@ void Get_Input_Interactive(option *input)
 #elif OPTIMIZ
   if(Filexists("optimiz_out.txt")) 
 #elif PHYML
-    if(Filexists(input->phyml_stat_file)) 
+  if(Filexists(input->phyml_stat_file)) 
 #endif
 #elif UNIX
 #ifdef EVOLVE
-      if(Filexists("evolve_out"));
+  if(Filexists("evolve_out"));
 #elif OPTIMIZ
   if(Filexists("optimiz_out"))
 #elif PHYML
-    if(Filexists(input->phyml_stat_file))
+  if(Filexists(input->phyml_stat_file))
 #endif
 #endif
-      {
-        printf("\n");
+    {
+      printf("\n");
 #ifdef EVOLVE
-        printf("A file 'evolve_out' already exists\n");
+      printf("A file 'evolve_out' already exists\n");
 #elif OPTIMIZ
-        printf("A file 'optimiz_out' already exists\n");
+      printf("A file 'optimiz_out' already exists\n");
 #elif PHYML
-        printf("A file '%s' already exists\n",input->phyml_stat_file);
+      printf("A file '%s' already exists\n",input->phyml_stat_file);
 #endif
-        printf("Do you want to Replace it or Append to it ?\n");
-        n_trial = 0;
-        do
-          {
-            printf("Please type R or A > ");
-            scanf("%c",&choix);
-            if(choix == '\n') choix = 'r'; 
-            else getchar();
-            if(++n_trial>10) Exit("\n");
-            Uppercase(&choix);
-          }
-        while((choix != 'R') && (choix != 'A'));
-        if(choix == 'R') input->phyml_stat_file_open_mode = 1;
-        else             input->phyml_stat_file_open_mode = 2;
-      }
+      printf("Do you want to Replace it or Append to it ?\n");
+      n_trial = 0;
+      do
+	{
+	  printf("Please type R or A > ");
+	  scanf("%c",&choix);
+	  if(choix == '\n') choix = 'r'; 
+	  else getchar();
+	  if(++n_trial>10) Exit("\n");
+	  Uppercase(&choix);
+	}
+      while((choix != 'R') && (choix != 'A'));
+      if(choix == 'R') input->phyml_stat_file_open_mode = 1;
+      else             input->phyml_stat_file_open_mode = 2;
+    }
 
 #ifdef WIN32
 #ifdef EVOLVE
   if(Filexists("evolve_seq.txt"))   
 #elif OPTIMIZ
-    if(Filexists("optimiz_tree.txt")) 
+  if(Filexists("optimiz_tree.txt")) 
 #elif PHYML
-      if(Filexists(input->phyml_tree_file)) 
+  if(Filexists(input->phyml_tree_file)) 
 #endif
 #elif UNIX
 #ifdef EVOLVE
-        if(Filexists("evolve_seq")) 
+  if(Filexists("evolve_seq")) 
 #elif OPTIMIZ
-          if(Filexists("optimiz_tree")) 
+  if(Filexists("optimiz_tree")) 
 #elif PHYML
-            if(Filexists(input->phyml_tree_file)) 
+  if(Filexists(input->phyml_tree_file)) 
 #endif
 #endif
-              {
-                printf("\n");
+    {
+      printf("\n");
 #ifdef EVOLVE
-                printf("A file 'evolve_seq' already exists\n");
+      printf("A file 'evolve_seq' already exists\n");
 #elif OPTIMIZ
-                printf("A file 'optimiz_tree' already exists\n");
+      printf("A file 'optimiz_tree' already exists\n");
 #elif PHYML
-                printf("A file '%s' already exists\n",input->phyml_tree_file);
+      printf("A file '%s' already exists\n",input->phyml_tree_file);
 #endif
-                printf("Do you want to Replace it or Append to it ?\n");
-                n_trial = 0;
-                do
-                  {
-                    printf("Please type R or A > ");
-                    scanf("%c",&choix);
-                    if(choix == '\n') choix = 'X'; 
-                    else getchar();
-                    Uppercase(&choix);
-                    if(++n_trial>10) Exit("\n");
-                  }
-                while((choix != 'R') && (choix != 'A'));
-                if(choix == 'R') input->phyml_tree_file_open_mode = 1;
-                else             input->phyml_tree_file_open_mode = 2;
-              }
+      printf("Do you want to Replace it or Append to it ?\n");
+      n_trial = 0;
+      do
+	{
+	  printf("Please type R or A > ");
+	  scanf("%c",&choix);
+	  if(choix == '\n') choix = 'X'; 
+	  else getchar();
+	  Uppercase(&choix);
+	  if(++n_trial>10) Exit("\n");
+	}
+      while((choix != 'R') && (choix != 'A'));
+      if(choix == 'R') input->phyml_tree_file_open_mode = 1;
+      else             input->phyml_tree_file_open_mode = 2;
+    }
 
   choix                    = 0;
 
@@ -715,10 +715,10 @@ void Get_Input_Interactive(option *input)
 	      else if(input->mod->whichmodel == 8)
 		{
 
-                  printf("  E "
-                         "                 Optimise equilibrium frequencies  "
-                         " %-15s \n",
-                         (input->mod->s_opt->opt_bfreq)?("yes"):("no"));
+		printf("  E "
+		       "                 Optimise equilibrium frequencies  "
+		       " %-15s \n",
+		       (input->mod->s_opt->opt_bfreq)?("yes"):("no"));
 
 		}
 
@@ -743,9 +743,9 @@ void Get_Input_Interactive(option *input)
 
 	    }
 	  else
-            printf("  M  "
-                   "                      Model of codon substitution "
-                   " %-15s \n", input->modelname);
+	      printf("  M  "
+		     "                      Model of codon substitution "
+		     " %-15s \n", input->modelname);
 	}
       else
 	{
@@ -763,7 +763,10 @@ void Get_Input_Interactive(option *input)
 	{
 	  strcpy(s,(input->mod->s_opt->opt_kappa)?("estimated"):("fixed"));
 	  (input->mod->s_opt->opt_kappa)?(strcat(s, "")):(strcat(s," (ts/tv = "));
-	  (input->mod->s_opt->opt_kappa)?(strcat(s, "")):((char *)sprintf(s+(int)strlen(s),"%3.2f)",input->mod->kappa));
+	  if (input->mod->s_opt->opt_kappa)
+            strcat(s, "");
+          else
+            sprintf(s+(int)strlen(s),"%3.2f)",input->mod->kappa);
 
 	  printf("  T "
 		 "                     Ts/tv ratio (fixed/estimated) "
@@ -773,7 +776,11 @@ void Get_Input_Interactive(option *input)
 
       (input->mod->s_opt->opt_pinvar)?(strcpy(s,"estimated")):(strcpy(s,"fixed"));
       (input->mod->s_opt->opt_pinvar)?(strcat(s,"")):(strcat(s," (p-invar = "));
-      (input->mod->s_opt->opt_pinvar)?(strcat(s,"")):((char *)sprintf(s+strlen(s),"%3.2f)",input->mod->pinvar));
+      if (input->mod->s_opt->opt_pinvar)
+        strcat(s,"");
+      else
+        sprintf(s+strlen(s),"%3.2f)",input->mod->pinvar);
+      
       printf("  V  "
 	     " Proportion of invariable sites (fixed/estimated)"
 	     "  %-15s \n",s);
@@ -797,7 +804,10 @@ void Get_Input_Interactive(option *input)
 	{
 	  strcpy(s,(input->mod->s_opt->opt_alpha)?("estimated"):("fixed"));
 	  (input->mod->s_opt->opt_alpha)?(strcat(s, "")):(strcat(s," (alpha = "));
-	  (input->mod->s_opt->opt_alpha)?(strcat(s, "")):((char *)sprintf(s+strlen(s),"%f)",input->mod->alpha));
+	  if (input->mod->s_opt->opt_alpha)
+            strcat(s, "");
+          else
+            sprintf(s+strlen(s),"%f)",input->mod->alpha);
   
 	  printf("  A "
 		 "    Gamma distribution parameter (fixed/estimated) "
@@ -838,13 +848,13 @@ void Get_Input_Interactive(option *input)
 
 
       printf("  H "
-             "                                         Use HMM ? "
-             " %-15s \n",
-             (input->HMM)?("yes"):("no"));
+		 "                                         Use HMM ? "
+		 " %-15s \n",
+		 (input->HMM)?("yes"):("no"));
 
       printf("  P "
-             "                                  How many trees ? "
-             " %d \n",input->n_trees);
+		 "                                  How many trees ? "
+		 " %d \n",input->n_trees);
 
 #endif   
 
@@ -944,7 +954,7 @@ void Get_Input_Interactive(option *input)
 	case 'W' :
 	  {
 	    input->mod->s_opt->opt_rr_param = 
-              (input->mod->s_opt->opt_rr_param)?(0):(1);
+	    (input->mod->s_opt->opt_rr_param)?(0):(1);
 	    break;
 	  }
 
@@ -1119,7 +1129,7 @@ void Get_Input_Interactive(option *input)
 	       (input->mod->whichmodel < 3)) Exit("\n. Invalid choice...\n");
 	    input->mod->s_opt->opt_bfreq = (input->mod->s_opt->opt_bfreq)?(0):(1);
 	    break;
-          }
+	    }
 
 	case 'D' :
 	  {
@@ -1254,10 +1264,10 @@ void Get_Input_Interactive(option *input)
 	  }
 
 	case 'R' :
-          {
-            (input->mod->n_catg == 1)?(input->mod->n_catg = 4):(input->mod->n_catg = 1);
-            break;
-          }
+	    {
+	      (input->mod->n_catg == 1)?(input->mod->n_catg = 4):(input->mod->n_catg = 1);
+	      break;
+	    }
 	  
 	case 'C' :
 	  {

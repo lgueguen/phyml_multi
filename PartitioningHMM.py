@@ -1,6 +1,9 @@
 #! /usr/bin/env python
 #the input of the program is the output lk file from phyml_multi. 
+
+
 import sys
+
 import os
 import partition
 import sequence
@@ -8,10 +11,15 @@ import matrice
 import lexique
 import math
 
+from scipy.optimize import minimize
 
 argv=sys.argv[1:]
 file=argv[0]
-lamb = float(argv[1])
+if len(argv)>=2:
+  lamb = float(argv[1])
+else:
+  lamb=-1
+  
 out=argv[0].split('.')[0]+'.mat'
 outvit=argv[0].split('.')[0]+'_vit.ps'
 outfb=argv[0].split('.')[0]+'_fb.ps'
@@ -21,10 +29,11 @@ partfb=argv[0].split('.')[0]+'_fb.part'
 
 #Formatting the output file from phyml_multi for Sarment.
 
+
 try:
     f=open(file, 'r')
-except IOError, e:
-    print "Unknown file: ",file
+except IOError:
+    print("Unknown file: ",file)
     sys.exit()
 
 i=0
@@ -34,8 +43,8 @@ for l in f:
 
 try:
     fout=open(out, 'w')
-except IOError, e:
-    print "Unknown file: ",out
+except IOError:
+    print("Unknown file: ",out)
     sys.exit()
 
 length=i-1
@@ -43,12 +52,10 @@ length=i-1
 fout.write(str(i-1)+"\n")
 f.close()
 
-
-
 try:
     f=open(file, 'r')
-except IOError, e:
-    print "Unknown file: ",file
+except IOError:
+    print("Unknown file: ",file)
     sys.exit()
 
 
@@ -57,7 +64,8 @@ numMod=0
 for l in f:
     if i==0:
         liste=l.split()
-        numMod=(len(liste)-1)/2
+        numMod=round((len(liste)-1)/2)
+        print(numMod)
         mod=numMod * [0]
         vitmod=numMod * [0]
         fbmod=numMod * [0]
@@ -87,45 +95,36 @@ fout.close()
 
 
 lx=lexique.Lexique(str=lexiqueString)#"0:#0 1:#1 ")
-
 #print lx
 
 import matrice
 
 m=matrice.Matrice(fic=out)
 
+def forward(x):
+  m_f=matrice.Matrice()
+  for i in range(numMod):
+    for j in range(numMod):
+      if (i==j) :
+        lx.g_inter(i,j,x+(1-x)/numMod)
+      else :
+        lx.g_inter(i,j,(1-x)/(numMod)) 
+  m_f.forward(m,lx)
+  return(-sum(m_f.line(len(m_f)-1).values()))
 
-# lx=lexique.Lexique(fprop="prob")
+cons = ({'type': 'ineq',
+         'fun' : lambda x: x - 0.001,
+         'jac' : lambda x: 1},
+        {'type': 'ineq',
+         'fun' : lambda x: 0.9999-x,
+         'jac' : lambda x: -1})
 
-# m=matrice.Matrice()
-# s=sequence.Sequence(fic="lambda.seq")
-# m.prediction(s,lx)
-
-# lx2=lexique.Lexique(str="1:#1 2:#2 3:#3 4:#4")
-# lx2.init_trans()
-
-# lx2.g_trans(1,1,math.log(0.9985))
-# lx2.g_trans(1,2,math.log(0.0005))
-# lx2.g_trans(1,3,math.log(0.0005))
-# lx2.g_trans(1,4,math.log(0.0005))
-# lx2.g_trans(2,2,math.log(0.9985))
-# lx2.g_trans(2,1,math.log(0.0005))
-# lx2.g_trans(2,3,math.log(0.0005))
-# lx2.g_trans(2,4,math.log(0.0005))
-# lx2.g_trans(3,3,math.log(0.9985))
-# lx2.g_trans(3,2,math.log(0.0005))
-# lx2.g_trans(3,1,math.log(0.0005))
-# lx2.g_trans(3,4,math.log(0.0005))
-# lx2.g_trans(4,4,math.log(0.9985))
-# lx2.g_trans(4,2,math.log(0.0005))
-# lx2.g_trans(4,3,math.log(0.0005))
-# lx2.g_trans(4,1,math.log(0.0005))
-
-#print str(lamb)
-#print type(lamb)
-
-
-#Here we need to specify the probabilities of transition between the states.
+  
+if lamb<=0 or lamb>=1:
+  print("optimization of lambda:")
+  res = minimize(forward, x0=0.5, constraints=cons, method="SLSQP")
+  lamb=res.x[0]
+  print("\t lambda=%f"%(lamb))
 
 for i in range(numMod):
    for j in range(numMod):
@@ -136,29 +135,13 @@ for i in range(numMod):
 
 
 
-
-
-#lx.g_inter(0,0,lamb)
-#lx.g_inter(0,1,(1-lamb)/2)
-#lx.g_inter(0,2,(1-lamb)/2)
-#lx.g_inter(1,1,lamb)
-#lx.g_inter(1,0,(1-lamb)/2)
-#lx.g_inter(1,2,(1-lamb)/2)
-#lx.g_inter(2,2,lamb)
-#lx.g_inter(2,0,(1-lamb)/2)
-#lx.g_inter(2,1,(1-lamb)/2)
-
-
-#print m[:10]
-#print lx
-
 p_vit=partition.Partition()
 p_vit.viterbi(m,lx)
 
-print "\n\nViterbi : "
+print("\n\nViterbi : ")
 #print len(p_vit)
 #print p_vit.len_don()
-print p_vit
+print(p_vit)
 
 
 
@@ -170,8 +153,22 @@ m_fb.fb(m,lx)
 p_fb=partition.Partition()
 p_fb.read_Matrice(m_fb)
 p_fb.draw_nf(outfb,num=1)
-print "\n\nForward-Backward : "
-print p_fb
+print("\n\nForward-Backward : ")
+print(p_fb)
+
+outfb=argv[0].split('.')[0]+'_fb.mat'
+foutfb=open(outfb,"w")
+foutfb.write(str(m_fb))
+foutfb.close()
+
+outfb=argv[0].split('.')[0]+'_fb.mat'
+foutfb=open(outfb,"w")
+foutfb.write(str(m_fb))
+foutfb.close()
+
+del(lx)
+del(m)
+del(m_fb)
 
 # FOR PDF OUTPUT, UNCOMMENT THE NEXT LINE
 #os.system("ps2pdf "+outfb)
