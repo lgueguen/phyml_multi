@@ -78,7 +78,10 @@ void Simu(arbre *tree, int n_step_max, int write_int, int read_int, int maximum)
   }
 
   //Sending the initial likelihood vector
-  write(write_int,lk_vec, tree->data->crunch_len * sizeof(double));
+  int wok = write(write_int,lk_vec, tree->data->crunch_len * sizeof(double));
+  if (wok == -1)
+    {}
+
   // printf("Client %d has sent its vector 0\n", getpid());
 
   //We wait for the "go" from the server : 
@@ -170,7 +173,7 @@ void Simu(arbre *tree, int n_step_max, int write_int, int read_int, int maximum)
             lk_vec[i]=tree->true_site_lk[i];
           }
           if (!stop_next_point)
-            write(write_int, lk_vec, tree->data->crunch_len*sizeof(double));
+            wok = write(write_int, lk_vec, tree->data->crunch_len*sizeof(double));
           //printf("Client %d has sent its vector 1\n", getpid());
 	
           //USING THE FILE TO COMMUNICATE

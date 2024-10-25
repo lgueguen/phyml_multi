@@ -51,7 +51,7 @@ int main(int argc, char **argv)
   int num_tree;
   //  double best_loglk;
   int *pid, i;  
-  char numchar[10];
+  char numchar[11];
   int** serv_cli; /* file descriptors for pipes: server speaks to clients */
   int** cli_serv; /* file descriptors for pipes: clients speak to server*/
   // int** serv_cli_end; /* file descriptors for pipes: server speaks to clients to tell them it is soon over*/
@@ -154,9 +154,6 @@ int main(int argc, char **argv)
 
   lk_summary=NULL;
 	  
-
-
-
  
   do
     {
@@ -168,54 +165,54 @@ int main(int argc, char **argv)
       //      n_otu = 0;
 
       if(n_data_sets > input->n_data_sets) 
-	{
-	  data = NULL;	  
-	}
+        {
+          data = NULL;	  
+        }
       else
-	{
-	  data = Get_Seq(input,0);
+        {
+          data = Get_Seq(input,0);
           /* 	  Print_Seq(data,n_otu); */
           /* 	  Exit(""); */
-	}
+        }
 
       if(data)
-	{
-	  if(n_data_sets > 1) printf("\n. Data set [#%d]\n",n_data_sets);
+        {
+          if(n_data_sets > 1) printf("\n. Data set [#%d]\n",n_data_sets);
 
-	  printf("\n. Compressing sequences...\n");
+          printf("\n. Compressing sequences...\n");
 
-	  alldata = Compact_Seq(data,input);
+          alldata = Compact_Seq(data,input);
 
-	  Free_Seq(data,alldata->n_otu);
+          Free_Seq(data,alldata->n_otu);
 
-	  Init_Model(alldata,mod);
+          Init_Model(alldata,mod);
 	  
-	  Check_Ambiguities(alldata,input->mod->datatype,input->mod->stepsize);
+          Check_Ambiguities(alldata,input->mod->datatype,input->mod->stepsize);
 
 	
-	  fname=input->fname;
+          fname=input->fname;
 
-	  lk_vectors = (double **)mCalloc(input->n_trees,sizeof(double*)); 
-	  For(num_tree,input->n_trees){
-	    lk_vectors[num_tree]=(double *)mCalloc(alldata->crunch_len,sizeof(double));
-	  }
+          lk_vectors = (double **)mCalloc(input->n_trees,sizeof(double*)); 
+          For(num_tree,input->n_trees){
+            lk_vectors[num_tree]=(double *)mCalloc(alldata->crunch_len,sizeof(double));
+          }
 
 
-	  //	  mat = ML_Dist(alldata,mod);
+          //	  mat = ML_Dist(alldata,mod);
 	 
-	  //For each tree, a client is created whose job is to optimize it
-	  For(num_tree,input->n_trees)
-	    {
-	      input->current_tree = num_tree;
-	      if(!input->inputtree)
-		{
-		  //We read again the matrix, but we only use segments of length (total length/input->n_trees)
-		  //This way we obtain input->n_trees different trees.
+          //For each tree, a client is created whose job is to optimize it
+          For(num_tree,input->n_trees)
+            {
+              input->current_tree = num_tree;
+              if(!input->inputtree)
+                {
+                  //We read again the matrix, but we only use segments of length (total length/input->n_trees)
+                  //This way we obtain input->n_trees different trees.
 	
-		  tmpData = Get_Seq_MultiTrees(input,  0);
-		  if(tmpData)
-		    {
-		      tmpAlldata = Compact_Seq(tmpData,input);
+                  tmpData = Get_Seq_MultiTrees(input,  0);
+                  if(tmpData)
+                    {
+                      tmpAlldata = Compact_Seq(tmpData,input);
 		      
                       Free_Seq(tmpData,tmpAlldata->n_otu);
 		       
@@ -262,231 +259,231 @@ int main(int argc, char **argv)
 
 
 		       
-		    }
-		}
-	      else // We have many trees in the input file
-		{
-		  if(input->n_trees > 1) printf("\n. Reading user tree [#%d]\n",num_tree+1);
-		  else printf("\n. Reading user tree...\n");
+                    }
+                }
+              else // We have many trees in the input file
+                {
+                  if(input->n_trees > 1) printf("\n. Reading user tree [#%d]\n",num_tree+1);
+                  else printf("\n. Reading user tree...\n");
 		  
-		  if(input->n_trees == 1) rewind(input->fp_input_tree);
+                  if(input->n_trees == 1) rewind(input->fp_input_tree);
 
-		  tree = Read_Tree_File(input->fp_input_tree);
+                  tree = Read_Tree_File(input->fp_input_tree);
 
-		  if(!tree) 
-		    {
-		      printf("\n. Missing tree for data set #%d\n",n_data_sets);
-		      printf("  This data set is not analyzed.\n");
-		      data = NULL;
-		    }
+                  if(!tree) 
+                    {
+                      printf("\n. Missing tree for data set #%d\n",n_data_sets);
+                      printf("  This data set is not analyzed.\n");
+                      data = NULL;
+                    }
  
-		  if(!tree->has_branch_lengths)
-		    {
-		      printf("\n. Computing branch length estimates...\n");
+                  if(!tree->has_branch_lengths)
+                    {
+                      printf("\n. Computing branch length estimates...\n");
 		      
-		      Order_Tree_CSeq(tree,alldata);
+                      Order_Tree_CSeq(tree,alldata);
 		      
-		      mat = ML_Dist(alldata,mod);
+                      mat = ML_Dist(alldata,mod);
 		      
-		      mat->tree = tree;
+                      mat->tree = tree;
 		      
-		      mat->method = 0;
+                      mat->method = 0;
 
-		      Bionj_Br_Length(mat);
+                      Bionj_Br_Length(mat);
 
-		      Free_Mat(mat);
-		    }
-		}
+                      Free_Mat(mat);
+                    }
+                }
 	      
-	      if(!tree) continue;
+              if(!tree) continue;
 	      
 	  
-	      tree->mod        = mod;
-	      tree->input      = input;
-	      tree->data       = alldata;
-	      tree->both_sides = 1;
-	      tree->n_pattern  = tree->data->crunch_len/tree->mod->stepsize;
+              tree->mod        = mod;
+              tree->input      = input;
+              tree->data       = alldata;
+              tree->both_sides = 1;
+              tree->n_pattern  = tree->data->crunch_len/tree->mod->stepsize;
 
-	      Order_Tree_CSeq(tree,alldata);
+              Order_Tree_CSeq(tree,alldata);
 
-	      Make_Tree_4_Lk(tree,alldata,alldata->init_len);
+              Make_Tree_4_Lk(tree,alldata,alldata->init_len);
 
-	      if (tree->input->HMM) {
-		tree->mod->message_size = tree->data->crunch_len * sizeof(double) + sizeof(double);  //we send the lambda parameter
-	      }
-	      else {
-		tree->mod->message_size = tree->data->crunch_len * sizeof(double);
-	      }
+              if (tree->input->HMM) {
+                tree->mod->message_size = tree->data->crunch_len * sizeof(double) + sizeof(double);  //we send the lambda parameter
+              }
+              else {
+                tree->mod->message_size = tree->data->crunch_len * sizeof(double);
+              }
 
-	      if (tree->input->HMM) {
-		lk_summary = (double *)mCalloc(alldata->crunch_len+1,sizeof(double));  
-		//We initiate lk_summary with 0s.
-		For(i,alldata->crunch_len+1) {
-		  lk_summary[i]=0.0;
-		}
-	      }
-	      else {
-		lk_summary = (double *)mCalloc(alldata->crunch_len,sizeof(double));  
-		//We initiate lk_summary with 0s.
-		For(i,alldata->crunch_len) {
-		  lk_summary[i]=0.0;
-		}
-	      }
+              if (tree->input->HMM) {
+                lk_summary = (double *)mCalloc(alldata->crunch_len+1,sizeof(double));  
+                //We initiate lk_summary with 0s.
+                For(i,alldata->crunch_len+1) {
+                  lk_summary[i]=0.0;
+                }
+              }
+              else {
+                lk_summary = (double *)mCalloc(alldata->crunch_len,sizeof(double));  
+                //We initiate lk_summary with 0s.
+                For(i,alldata->crunch_len) {
+                  lk_summary[i]=0.0;
+                }
+              }
 
 	 
-	      //Allocating the space for the matrix containing the tree likelihoods   
-	      tree->mod->all_lk_vec = (double **)mCalloc(tree->input->n_trees,sizeof(double *));
-	      for (i=0;i<tree->input->n_trees;i++) {
-		tree->mod->all_lk_vec[i] = (double *)mCalloc(tree->data->crunch_len,sizeof(double));
-	      }
+              //Allocating the space for the matrix containing the tree likelihoods   
+              tree->mod->all_lk_vec = (double **)mCalloc(tree->input->n_trees,sizeof(double *));
+              for (i=0;i<tree->input->n_trees;i++) {
+                tree->mod->all_lk_vec[i] = (double *)mCalloc(tree->data->crunch_len,sizeof(double));
+              }
 
-	      Lk(tree,tree->data, lk_summary, input->maxi);
-	      printf("Tree log-likelihood : %f\n", tree->tot_loglk);
-	      For (i, tree->data->crunch_len) {
-		lk_vectors[num_tree][i]=tree->true_site_lk[i];
-	      }
+              Lk(tree,tree->data, lk_summary, input->maxi);
+              printf("Tree log-likelihood : %f\n", tree->tot_loglk);
+              For (i, tree->data->crunch_len) {
+                lk_vectors[num_tree][i]=tree->true_site_lk[i];
+              }
 
-	      treeListe[num_tree] = tree;
+              treeListe[num_tree] = tree;
 	      
 
-	    }//We have computed the likelihoods for all trees; we can think of discarding some of these
+            }//We have computed the likelihoods for all trees; we can think of discarding some of these
 	  
-	  //freeing the space for the matrix containing the tree likelihoods   
-	  for (i=0;i<tree->input->n_trees;i++) {
-	    free(tree->mod->all_lk_vec[i]);
-	  }
-	  free(tree->mod->all_lk_vec);
+          //freeing the space for the matrix containing the tree likelihoods   
+          for (i=0;i<tree->input->n_trees;i++) {
+            free(tree->mod->all_lk_vec[i]);
+          }
+          free(tree->mod->all_lk_vec);
 	  
-	  ClientsToRemove = (int *)mCalloc(tree->input->n_trees,sizeof(int));
-	  For(num_tree,tree->input->n_trees){
-	    ClientsToRemove[num_tree]=1; //0 when we want to remove
-	  }
+          ClientsToRemove = (int *)mCalloc(tree->input->n_trees,sizeof(int));
+          For(num_tree,tree->input->n_trees){
+            ClientsToRemove[num_tree]=1; //0 when we want to remove
+          }
 
-	  //Here we can examine the likelihoods and give them to the segmentation algorithm; this should limit the number of trees that are going to be optimized afterwards.
-	  //Checking whether we have the same tree (=same likelihoods) more than once
-	  For(num_tree,input->n_trees){
-	    for(num_tree2=num_tree+1; num_tree2<input->n_trees; num_tree2++){
-	      if (ClientsToRemove[num_tree2]==1) {
-		ind=0;
-		For(i,tree->data->crunch_len){
-		  if (lk_vectors[num_tree][i]!=lk_vectors[num_tree2][i]) {
-		    break;
-		  }
-		  else {
-		    ind=ind+1;
-		  }
-		}
-	      }
-	      if (ind==tree->data->crunch_len) {
-		printf ("Two trees among the first %d trees are identical, one is discarded\n", input->n_trees);
-		ClientsToRemove[num_tree2]=0;
-	      }
-	    }
-	  }
+          //Here we can examine the likelihoods and give them to the segmentation algorithm; this should limit the number of trees that are going to be optimized afterwards.
+          //Checking whether we have the same tree (=same likelihoods) more than once
+          For(num_tree,input->n_trees){
+            for(num_tree2=num_tree+1; num_tree2<input->n_trees; num_tree2++){
+              if (ClientsToRemove[num_tree2]==1) {
+                ind=0;
+                For(i,tree->data->crunch_len){
+                  if (lk_vectors[num_tree][i]!=lk_vectors[num_tree2][i]) {
+                    break;
+                  }
+                  else {
+                    ind=ind+1;
+                  }
+                }
+              }
+              if (ind==tree->data->crunch_len) {
+                printf ("Two trees among the first %d trees are identical, one is discarded\n", input->n_trees);
+                ClientsToRemove[num_tree2]=0;
+              }
+            }
+          }
 	  
-	  //Now we should have removed all the trees that were identical. We set their values in the matrix to 0.0
+          //Now we should have removed all the trees that were identical. We set their values in the matrix to 0.0
 	  
-	  For(num_tree,input->n_trees){
-	    if (ClientsToRemove[num_tree]==0) {
-	      printf("ClientsToRemove[num_tree]==0 : %d\n", num_tree);
-	      For(i,tree->data->crunch_len){
-		lk_vectors[num_tree][i]=0.0;
-	      }
-	    }
-	  }
+          For(num_tree,input->n_trees){
+            if (ClientsToRemove[num_tree]==0) {
+              printf("ClientsToRemove[num_tree]==0 : %d\n", num_tree);
+              For(i,tree->data->crunch_len){
+                lk_vectors[num_tree][i]=0.0;
+              }
+            }
+          }
 	  
-	  //We output the matrix and ask Sarment to segment it or we use our in-built phylo-HMM ?
-	  //The phylo-HMM is more secure, because with MPP we might have the problem of not finding a good optimum...
-	  //So we try the phylo-HMM
+          //We output the matrix and ask Sarment to segment it or we use our in-built phylo-HMM ?
+          //The phylo-HMM is more secure, because with MPP we might have the problem of not finding a good optimum...
+          //So we try the phylo-HMM
 	  
-	  Optimize_Hmm_Lambda(tree, lk_vectors, &(tree->mod->hmm_lambda), 
-			      tree->mod->hmm_lambda, 
-			      0.01, 0.9999999999,
-			      100, tree->input->n_trees);
-
-
-	  printf("New value of the auto-correlation parameter : %f\n", tree->mod->hmm_lambda);
-	  
-	  listeModels = (int *)mCalloc(tree->data->crunch_len,sizeof(int));
-	  listeModels = Compute_Viterbi (tree, lk_vectors, tree->input->n_trees);
-	  
-	  listeTrees = (int *)mCalloc(tree->input->n_trees,sizeof(int));
-
-	  //Now we analyse listeModels so that we can remove useless models
-	  
-	  For(num_tree,tree->input->n_trees){
-	    listeTrees[num_tree]=0;
-	  }
-	  For(i,tree->data->crunch_len){
-	    listeTrees[listeModels[i]] = 1;
-	  }
-	  
-	  For(num_tree,tree->input->n_trees){
-	    if (listeTrees[num_tree]==0) {
-	      ClientsToRemove[num_tree]=0;
-	    }
-	  }
-
-	  newn_tree=0;
-	  For(num_tree,tree->input->n_trees){
-	    if (ClientsToRemove[num_tree]==1) {//we count the trees that we keep
-	      newn_tree=newn_tree+1;
-	    }
-	  }
-
-	  printf("Tree log-likelihood : %f\n", tree->tot_loglk);
-	  printf("New Number of input trees after the removal of apparently useless ones : %d\n",newn_tree); 
+          Optimize_Hmm_Lambda(tree, lk_vectors, &(tree->mod->hmm_lambda), 
+                              tree->mod->hmm_lambda, 
+                              0.01, 0.9999999999,
+                              100, tree->input->n_trees);
 
 
+          printf("New value of the auto-correlation parameter : %f\n", tree->mod->hmm_lambda);
+	  
+          listeModels = (int *)mCalloc(tree->data->crunch_len,sizeof(int));
+          listeModels = Compute_Viterbi (tree, lk_vectors, tree->input->n_trees);
+	  
+          listeTrees = (int *)mCalloc(tree->input->n_trees,sizeof(int));
 
-	  //Allocates the space for the clients pid
-	  pid = (int *)mCalloc(newn_tree,sizeof(int));
+          //Now we analyse listeModels so that we can remove useless models
 	  
-	  /* Creates the pipes */
-	  For(num_tree,newn_tree){
-	    serv_cli[num_tree] = (int*)mCalloc(2,sizeof(int));
-	    cli_serv[num_tree] = (int*)mCalloc(2,sizeof(int));
-	    if ( pipe(serv_cli[num_tree]) == -1)
-	      {
-		printf("Error while creating pipe serv_cli\n");
-		exit(EXIT_FAILURE);
-	      }
-	    if ( pipe(cli_serv[num_tree]) == -1)
-	      {
-		printf("Error while creating pipe cli_serv\n");
-		exit(EXIT_FAILURE);
-	      }
-	  }
-	  //Now we should have enough pipes
+          For(num_tree,tree->input->n_trees){
+            listeTrees[num_tree]=0;
+          }
+          For(i,tree->data->crunch_len){
+            listeTrees[listeModels[i]] = 1;
+          }
 	  
-	  //Because clients won't need it, we can free it
-	  For(num_tree,input->n_trees){
-	    free(lk_vectors[num_tree]);
-	  }
-	  free(lk_vectors);
+          For(num_tree,tree->input->n_trees){
+            if (listeTrees[num_tree]==0) {
+              ClientsToRemove[num_tree]=0;
+            }
+          }
 
-	  num_tree=-1;
+          newn_tree=0;
+          For(num_tree,tree->input->n_trees){
+            if (ClientsToRemove[num_tree]==1) {//we count the trees that we keep
+              newn_tree=newn_tree+1;
+            }
+          }
+
+          printf("Tree log-likelihood : %f\n", tree->tot_loglk);
+          printf("New Number of input trees after the removal of apparently useless ones : %d\n",newn_tree); 
+
+
+
+          //Allocates the space for the clients pid
+          pid = (int *)mCalloc(newn_tree,sizeof(int));
 	  
-	  For(num_tree2,input->n_trees)
-	    {
-	      if (ClientsToRemove[num_tree2]==0) {
-		printf("We have broken : num_tree : %d, num_tree2 : %d\n", num_tree,num_tree2);
-		//break;
-	      }
-	      else {
-		num_tree=num_tree+1;
-		printf ("We have not broken: num_tree : %d, num_tree2 : %d\n", num_tree,num_tree2);
-		//Outputting the starting trees
+          /* Creates the pipes */
+          For(num_tree,newn_tree){
+            serv_cli[num_tree] = (int*)mCalloc(2,sizeof(int));
+            cli_serv[num_tree] = (int*)mCalloc(2,sizeof(int));
+            if ( pipe(serv_cli[num_tree]) == -1)
+              {
+                printf("Error while creating pipe serv_cli\n");
+                exit(EXIT_FAILURE);
+              }
+            if ( pipe(cli_serv[num_tree]) == -1)
+              {
+                printf("Error while creating pipe cli_serv\n");
+                exit(EXIT_FAILURE);
+              }
+          }
+          //Now we should have enough pipes
+	  
+          //Because clients won't need it, we can free it
+          For(num_tree,input->n_trees){
+            free(lk_vectors[num_tree]);
+          }
+          free(lk_vectors);
+
+          num_tree=-1;
+	  
+          For(num_tree2,input->n_trees)
+            {
+              if (ClientsToRemove[num_tree2]==0) {
+                printf("We have broken : num_tree : %d, num_tree2 : %d\n", num_tree,num_tree2);
+                //break;
+              }
+              else {
+                num_tree=num_tree+1;
+                printf ("We have not broken: num_tree : %d, num_tree2 : %d\n", num_tree,num_tree2);
+                //Outputting the starting trees
 		
-		sprintf(numchar, "%d", num_tree);
+                sprintf(numchar, "%d", num_tree);
 		
-		strcpy(starting_tree,backup_starting_tree);
-		strcat(starting_tree, numchar);
-		fp_phyml_tree = Openfile(starting_tree,input->phyml_tree_file_open_mode);
-		s_tree = Write_Tree(treeListe[num_tree]);
-		fprintf(fp_phyml_tree,"%s\n",s_tree);
-		Free(s_tree);
-		fclose(fp_phyml_tree);
+                strcpy(starting_tree,backup_starting_tree);
+                strcat(starting_tree, numchar);
+                fp_phyml_tree = Openfile(starting_tree,input->phyml_tree_file_open_mode);
+                s_tree = Write_Tree(treeListe[num_tree]);
+                fprintf(fp_phyml_tree,"%s\n",s_tree);
+                Free(s_tree);
+                fclose(fp_phyml_tree);
 
 
 
@@ -497,17 +494,17 @@ int main(int argc, char **argv)
                 if (pid[num_tree]!=0) {//Server
                   //We do nothing here, so that we open the next tree and give it to the next client.
                   /*	if (close(cli_serv[num_tree][1]) == -1)
-                        {
-                        printf("Error while closing cli_serv[1]\n");
-                        }
-                        if (close(serv_cli[num_tree][0]) == -1)
-                        {
-                        printf("Error while closing serv_cli[0]\n");
-                        }*/
+                      {
+                      printf("Error while closing cli_serv[1]\n");
+                      }
+                      if (close(serv_cli[num_tree][0]) == -1)
+                      {
+                      printf("Error while closing serv_cli[0]\n");
+                      }*/
                   /*	if (close(serv_cli_end[num_tree][0]) == -1)
-                        {
-                        printf("Error while closing serv_cli[0]\n");
-                        } 
+                      {
+                      printf("Error while closing serv_cli[0]\n");
+                      } 
                   */
                   //fcntl(serv_cli[num_tree][1], F_SETFL, fcntl(serv_cli[num_tree][1], F_GETFL) | O_NONBLOCK);//write non blocking
                   //fcntl(cli_serv[num_tree][0], F_SETFL, fcntl(cli_serv[num_tree][0], F_GETFL) | O_NONBLOCK);//read non blocking
@@ -572,7 +569,7 @@ int main(int argc, char **argv)
                       Simu(tree,1000, cli_serv[num_tree][1], serv_cli[num_tree][0], input->maxi);//, serv_cli_end[num_tree][0]);
                       /* check_sigusr1();*/
                       //  pause(); 
-		    }
+                    }
                     else
                       {
                         if(tree->mod->s_opt->opt_free_param){
@@ -673,8 +670,8 @@ int main(int argc, char **argv)
                   //	while (final_stop==FALSE) {
                   printf("Client pauses\n");
                   /*	check_sigusr1();
-                        if (!final_stop)
-                        pause();*/
+                      if (!final_stop)
+                      pause();*/
                   printf("Job done for client %d\n", getpid());
                   //The client has finished its job
                   //	}
@@ -684,111 +681,111 @@ int main(int argc, char **argv)
 
 
               }
-	    } //End of the loop on the trees
+            } //End of the loop on the trees
 	  
-	  /*//////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+          /*//////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
             /***********************THE SERVER INSTRUCTIONS********************************/
-            /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////////////*/
+          /*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////////////*/
           printf("\n\tThe server has finished distributing the trees\n\n");
 
           //TEST : HMM only in the server
           //  input->HMM = TRUE;
 
-	  input->n_trees = newn_tree;
-	  //Closing all the unused extremities of the pipes
+          input->n_trees = newn_tree;
+          //Closing all the unused extremities of the pipes
 	     
-	  For(num_tree,input->n_trees){
+          For(num_tree,input->n_trees){
 	   
-	    if (close(cli_serv[num_tree][1]) == -1)
-	      {
-		printf("Error while closing cli_serv[%d][1]\n", num_tree);
-	      }
-	    if (close(serv_cli[num_tree][0]) == -1)
-	      {
-		printf("Error while closing serv_cli[%d][0]\n", num_tree);
-	      }
-	  }
+            if (close(cli_serv[num_tree][1]) == -1)
+              {
+                printf("Error while closing cli_serv[%d][1]\n", num_tree);
+              }
+            if (close(serv_cli[num_tree][0]) == -1)
+              {
+                printf("Error while closing serv_cli[%d][0]\n", num_tree);
+              }
+          }
 	 
 
-	  //Allocating the likelihood vectors
-	  lk_vectors = (double **)mCalloc(input->n_trees,sizeof(double*)); 
-	  lk_vectors_copy = (double **)mCalloc(input->n_trees,sizeof(double*)); 
-	  temp_other_vec = (double *)mCalloc(tree->data->crunch_len,sizeof(double)); 
+          //Allocating the likelihood vectors
+          lk_vectors = (double **)mCalloc(input->n_trees,sizeof(double*)); 
+          lk_vectors_copy = (double **)mCalloc(input->n_trees,sizeof(double*)); 
+          temp_other_vec = (double *)mCalloc(tree->data->crunch_len,sizeof(double)); 
 	  
-	  For(num_tree,input->n_trees){
-	    lk_vectors[num_tree]=(double *)mCalloc(tree->data->crunch_len,sizeof(double));
-	  }
-	  For(num_tree,input->n_trees){
-	    lk_vectors_copy[num_tree]=(double *)mCalloc(tree->data->crunch_len,sizeof(double));
-	  }
+          For(num_tree,input->n_trees){
+            lk_vectors[num_tree]=(double *)mCalloc(tree->data->crunch_len,sizeof(double));
+          }
+          For(num_tree,input->n_trees){
+            lk_vectors_copy[num_tree]=(double *)mCalloc(tree->data->crunch_len,sizeof(double));
+          }
 	  
-	  failureCount = (double *)mCalloc(tree->input->n_trees,sizeof(double));
+          failureCount = (double *)mCalloc(tree->input->n_trees,sizeof(double));
 
 
-	  //If we do not want to optimize the trees
-	  if ((!(tree->mod->s_opt->opt_topo))&&(!tree->mod->s_opt->opt_free_param)) {
+          //If we do not want to optimize the trees
+          if ((!(tree->mod->s_opt->opt_topo))&&(!tree->mod->s_opt->opt_free_param)) {
             // Now the server should receive the initial likelihoods from the clients	
-	    For(num_tree,input->n_trees){
-	      /*  temp=0;
+            For(num_tree,input->n_trees){
+              /*  temp=0;
                   while (temp<tree->data->crunch_len * sizeof(double)) {
                   temp+=read(cli_serv[num_tree][0], lk_vectors[num_tree], tree->data->crunch_len * sizeof(double));
                   }*/
-	      if(read(cli_serv[num_tree][0], lk_vectors[num_tree], tree->data->crunch_len * sizeof(double))< tree->data->crunch_len * sizeof(double)) {
-		printf("Problem read in main l711\n"); 
-	      } 
-	      else{
-		printf("Initial likelihood vector read from tree %d\n", num_tree);
-	      }
-	    }
+              if(read(cli_serv[num_tree][0], lk_vectors[num_tree], tree->data->crunch_len * sizeof(double))< tree->data->crunch_len * sizeof(double)) {
+                printf("Problem read in main l711\n"); 
+              } 
+              else{
+                printf("Initial likelihood vector read from tree %d\n", num_tree);
+              }
+            }
 
-	    if (input->HMM){
-	      mean_loglk=Compute_HMM_Multi_Likelihood (tree, lk_vectors, input->n_trees);
-	    }
-	    else{
-	      mean_loglk=Compute_Simplified_Multi_Likelihood(tree, lk_vectors, input->n_trees, input->maxi);
-	    }
-	    //printf("mean_loglk : %f\n", mean_loglk);
-	    For(num_tree, input->n_trees) {
-	      kill(pid[num_tree], SIGUSR2);
-	    }
-	  }//END WE DO NOT WANT TO OPTIMIZE THE TREEs
+            if (input->HMM){
+              mean_loglk=Compute_HMM_Multi_Likelihood (tree, lk_vectors, input->n_trees);
+            }
+            else{
+              mean_loglk=Compute_Simplified_Multi_Likelihood(tree, lk_vectors, input->n_trees, input->maxi);
+            }
+            //printf("mean_loglk : %f\n", mean_loglk);
+            For(num_tree, input->n_trees) {
+              kill(pid[num_tree], SIGUSR2);
+            }
+          }//END WE DO NOT WANT TO OPTIMIZE THE TREEs
 	  
-	  else //If we do  want to optimize the trees
-	    {
-	      //Allocating the remaining clients vector
-	      remainingClients = (int *)mCalloc(input->n_trees,sizeof(int)); 
-	      For(num_tree,input->n_trees){
-		remainingClients[num_tree]=1;
-	      }
-	      numberOfRemainingClients = input->n_trees;
+          else //If we do  want to optimize the trees
+            {
+              //Allocating the remaining clients vector
+              remainingClients = (int *)mCalloc(input->n_trees,sizeof(int)); 
+              For(num_tree,input->n_trees){
+                remainingClients[num_tree]=1;
+              }
+              numberOfRemainingClients = input->n_trees;
 
 
-	      // Now the server should receive the initial likelihoods from the clients	
-	      For(num_tree,input->n_trees){
-		if((temp=read(cli_serv[num_tree][0], lk_vectors[num_tree], tree->data->crunch_len * sizeof(double)))< tree->data->crunch_len * sizeof(double)) {
-		  printf("Problem read in main l744 :  read %d\n", temp);
-		}
-		else {
-		  printf("Initial likelihood vector read from tree %d\n", num_tree);
-		}
-	      }
+              // Now the server should receive the initial likelihoods from the clients	
+              For(num_tree,input->n_trees){
+                if((temp=read(cli_serv[num_tree][0], lk_vectors[num_tree], tree->data->crunch_len * sizeof(double)))< tree->data->crunch_len * sizeof(double)) {
+                  printf("Problem read in main l744 :  read %d\n", temp);
+                }
+                else {
+                  printf("Initial likelihood vector read from tree %d\n", num_tree);
+                }
+              }
 	      
 	     
 
-	      //Writing into the file used for communications
+              //Writing into the file used for communications
               if (input->HMM) { 
                 Write_To_Memory_With_Lambda (fname, lk_vectors, &(tree->mod->hmm_lambda), input->n_trees, tree->data->crunch_len);
-	      }
-	      else {
-		//We've got all the likelihood vectors for all the trees
-		//Building and sending the lk_summary to each client
-		/*	For(num_tree,input->n_trees){
-                        lk_summary = Compute_Lk_Summary(tree, lk_vectors, input->n_trees, input->maxi, num_tree);
-                        write(serv_cli[num_tree][1],lk_summary,  tree->mod->message_size);
-                        printf("Supplementary vector sent to client %d\n", num_tree);
-                        }*/
-		Write_To_Memory (fname, lk_vectors, input->n_trees, tree->data->crunch_len);
-	      }
+              }
+              else {
+                //We've got all the likelihood vectors for all the trees
+                //Building and sending the lk_summary to each client
+                /*	For(num_tree,input->n_trees){
+                    lk_summary = Compute_Lk_Summary(tree, lk_vectors, input->n_trees, input->maxi, num_tree);
+                    write(serv_cli[num_tree][1],lk_summary,  tree->mod->message_size);
+                    printf("Supplementary vector sent to client %d\n", num_tree);
+                    }*/
+                Write_To_Memory (fname, lk_vectors, input->n_trees, tree->data->crunch_len);
+              }
 
               //We tell the clients that they can read the file now
               For(num_tree,input->n_trees){ 
@@ -798,7 +795,7 @@ int main(int argc, char **argv)
                   printf("ERROR WRITE MAIN l602 : %d\n", temp);
                 } 
               }
-	      /////////////////////Computing the initial MultiTree Likelihood/////////////////////////
+              /////////////////////Computing the initial MultiTree Likelihood/////////////////////////
               if (input->HMM) {
                 mean_loglk=Compute_HMM_Multi_Likelihood (tree, lk_vectors, input->n_trees);
               }
@@ -970,20 +967,20 @@ int main(int argc, char **argv)
                 } while (numberOfRemainingClients>=0);//&&((mean_loglk>old_loglk+MIN_DIFF_LK/100)&&(improved==1)&&(step>10)));
               //while (((improved==1)&&(mean_loglk>old_loglk+MIN_DIFF_LK))||(improved==0)||(step<=10));
 	  	      
-	      //We tell the clients that we enter the last round of optimizations
-	      printf("\n\n\t\t\tEntering the last round of optimizations, if any\n\n");
-	      /*     For(num_tree, input->n_trees) {
+              //We tell the clients that we enter the last round of optimizations
+              printf("\n\n\t\t\tEntering the last round of optimizations, if any\n\n");
+              /*     For(num_tree, input->n_trees) {
                      kill(pid[num_tree], SIGUSR1);
                      }
-	      */
-	      old_loglk=current_loglk=mean_loglk;
-	      /* 
-	      //We make the read non-blocking
-	      For(num_tree, input->n_trees) {
+              */
+              old_loglk=current_loglk=mean_loglk;
+              /* 
+              //We make the read non-blocking
+              For(num_tree, input->n_trees) {
               fcntl(cli_serv[num_tree][0], F_SETFL, fcntl(cli_serv[num_tree][0], F_GETFL) | O_NONBLOCK);//read non blocking
-	      }
-	      //We read their new vectors, if any.
-	      For(num_tree, input->n_trees) {
+              }
+              //We read their new vectors, if any.
+              For(num_tree, input->n_trees) {
               if ((temp=read(cli_serv[num_tree][0], lk_vectors[num_tree], tree->data->crunch_len * sizeof(double)))&&(temp<tree->data->crunch_len * sizeof(double))) {
               //printf("Error final read in main : read %d bytes instead of %d\n", temp, tree->data->crunch_len * sizeof(double));
               }
@@ -1010,13 +1007,13 @@ int main(int argc, char **argv)
               old_loglk=mean_loglk;
               }
               }
-	      }//END For(num_tree, input->n_trees) {
+              }//END For(num_tree, input->n_trees) {
               */
-	    }//END if we optimize the trees
+            }//END if we optimize the trees
           ///////////////////////////Waiting for the clients to stop to avoid zombis//////////
           /*	    For(num_tree, input->n_trees) {
-                    kill (pid[num_tree], SIGUSR1);
-                    } */
+                  kill (pid[num_tree], SIGUSR1);
+                  } */
           /* For(num_tree, input->n_trees) {
              kill(pid[num_tree], SIGUSR1);
              }*/
@@ -1118,7 +1115,7 @@ int main(int argc, char **argv)
           Free_Tree(tree);
 	   
           Free_Cseq(alldata);
-	}
+        }
     }while(data);
   Free_Model(mod);
   
@@ -1137,11 +1134,11 @@ int main(int argc, char **argv)
 /*********************************************************/
 
 /*	For(t, input->n_trees){//Building and sending the lk_summary to each client
-        lk_summary = Compute_Lk_Summary(tree, lk_vectors, input->n_trees, input->maxi, t);
-        if (write(serv_cli[t][1],lk_summary, tree->data->crunch_len * sizeof(double))!=tree->data->crunch_len * sizeof(double)) {
-        printf("ERROR WRITE MAIN l540");
-        }
-        }*/
+    lk_summary = Compute_Lk_Summary(tree, lk_vectors, input->n_trees, input->maxi, t);
+    if (write(serv_cli[t][1],lk_summary, tree->data->crunch_len * sizeof(double))!=tree->data->crunch_len * sizeof(double)) {
+    printf("ERROR WRITE MAIN l540");
+    }
+    }*/
 
 /* if ((temp=read(cli_serv[num_tree][0], lk_vectors[num_tree], tree->data->crunch_len * sizeof(double)))&&(temp<tree->data->crunch_len * sizeof(double))) {
    printf("Error read in main : read %d bytes instead of %d\n", temp, tree->data->crunch_len * sizeof(double));

@@ -543,8 +543,15 @@ int GetDaa (double *daa, double *pi, char *file_name)
 
    fdaa = (FILE *)Openfile(file_name,0);
 
+   
    for (i=0; i<naa; i++)  for (j=0; j<i; j++)  {
-     fscanf(fdaa, "%lf", &daa[i*naa+j]);
+      int rok = fscanf(fdaa, "%lf", &daa[i*naa+j]);
+      if (rok == EOF)
+        {
+          printf("\nProblem to get Daa\n"); 
+          fclose (fdaa);
+          return(0);
+        }
       daa[j*naa+i]=daa[i*naa+j];
       if (dmax<daa[i*naa+j]) dmax=daa[i*naa+j];
       if (dmin>daa[i*naa+j]) dmin=daa[i*naa+j];

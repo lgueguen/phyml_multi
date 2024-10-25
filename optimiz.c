@@ -830,15 +830,18 @@ void Round_Optimize(arbre *tree, allseq *data, int write_int, int read_int, int 
   }
   
    //Sending the initial likelihood vector
-  write(write_int,lk_vec, tree->data->crunch_len * sizeof(double));
-  /* if (read(read_int, lk_other_vec, tree->data->crunch_len*sizeof(double))<tree->data->crunch_len*sizeof(double)) {
-     printf("PROBLEM READ in Simu\n");
-     }//It is better if the read is blocking here
-  */
+  int wok = write(write_int,lk_vec, tree->data->crunch_len * sizeof(double));
+  if (wok == -1)
+    {
+      printf("PROBLEM WRITE in Simu\n");
+      exit(-1);
+    }//It is better if the read is blocking here
 
+  
   //We wait for the "go" from the server : 
     if (read(read_int, &i, sizeof(int))<sizeof(int)) {
       printf("PROBLEM READ in Simu\n");
+      exit(-1);
      }//It is better if the read is blocking here !
 
   //USING THE FILE TO COMMUNICATE
@@ -919,12 +922,13 @@ void Round_Optimize(arbre *tree, allseq *data, int write_int, int read_int, int 
 	  lk_vec[i]=tree->true_site_lk[i]; 
 	}
 	
-	write(write_int, lk_vec, tree->data->crunch_len*sizeof(double));
-	/*	while(read(read_int, temp_other_vec, tree->data->crunch_len*sizeof(double))==tree->data->crunch_len*sizeof(double)) {
-	  For (i, tree->data->crunch_len) {
-	  lk_other_vec[i]=temp_other_vec[i];
-	  }
-	  }*/
+	wok = write(write_int, lk_vec, tree->data->crunch_len*sizeof(double));
+  if (wok == -1)
+    {
+      printf("PROBLEM WRITE in Simu\n");
+      exit(-1);
+    }//It is better if the read is blocking here
+
 	//USING THE FILE TO COMMUNICATE
 	if(tree->input->HMM) {
 	  Read_From_Memory_With_Lambda (tree->input->fname, tree->mod->all_lk_vec, &tree->mod->hmm_lambda, tree->input->n_trees, tree->data->crunch_len);
@@ -942,15 +946,16 @@ void Round_Optimize(arbre *tree, allseq *data, int write_int, int read_int, int 
     }   
   while(!stop_next_point);
  
-    if(tree->mod->s_opt->print) printf("\n");
-    Optimiz_All_Free_Param(tree,tree->mod->s_opt->print, lk_other_vec, maximum);	
-    For (i, tree->data->crunch_len) {
-      lk_vec[i]=tree->true_site_lk[i];
-    }
-  write(write_int, lk_vec, tree->data->crunch_len*sizeof(double));
+  if(tree->mod->s_opt->print) printf("\n");
+  Optimiz_All_Free_Param(tree,tree->mod->s_opt->print, lk_other_vec, maximum);	
+  For (i, tree->data->crunch_len) {
+    lk_vec[i]=tree->true_site_lk[i];
+  }
+  wok = write(write_int, lk_vec, tree->data->crunch_len*sizeof(double));
   free(lk_vec);
   free(lk_other_vec);
 }
+
 /*********************************************************/
 
 void Round_Optimize_End(arbre *tree, allseq *data, int write_int, int read_int, int maximum)
@@ -978,13 +983,16 @@ void Round_Optimize_End(arbre *tree, allseq *data, int write_int, int read_int, 
   tree->both_sides         = 1;
 
 
-  read(read_int, lk_other_vec, tree->data->crunch_len*sizeof(double));
+  int readok = read(read_int, lk_other_vec, tree->data->crunch_len*sizeof(double));
+
+  if (readok == EOF)
+    {
+      printf("PROBLEM READ in Round_Optimize_End\n");
+      exit(-1);
+     }//It is better if the read is blocking here
 
   Lk(tree,data, lk_other_vec, maximum);
   lk_new = lk_old = tree->tot_loglk;
-
-
-
 
   while(n_round < ROUND_MAX)
     {
@@ -1065,7 +1073,7 @@ void Round_Optimize_End(arbre *tree, allseq *data, int write_int, int read_int, 
 	Lk(tree,data, lk_other_vec, maximum);
 	lk_new = tree->tot_loglk;
 	lk_old=lk_new;
-
+  
     }
   
   if(tree->mod->s_opt->print) printf("\n");
@@ -1073,7 +1081,10 @@ void Round_Optimize_End(arbre *tree, allseq *data, int write_int, int read_int, 
   For (i, tree->data->crunch_len) {
     lk_vec[i]=tree->true_site_lk[i];
   }	
-  write(write_int, lk_vec, tree->data->crunch_len*sizeof(double));
+  int wok = write(write_int, lk_vec, tree->data->crunch_len*sizeof(double));
+  if (wok == -1)
+    {}
+  
   free(lk_vec);
   free(lk_other_vec);
 }

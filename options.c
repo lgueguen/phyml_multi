@@ -1,12 +1,12 @@
 /*
 
-PHYML :  a program that  computes maximum likelihood  phylogenies from
-DNA or AA homologous sequences 
+  PHYML :  a program that  computes maximum likelihood  phylogenies from
+  DNA or AA homologous sequences 
 
-Copyright (C) Stephane Guindon. Oct 2003 onward
+  Copyright (C) Stephane Guindon. Oct 2003 onward
 
-All parts of  the source except where indicated  are distributed under
-the GNU public licence.  See http://www.opensource.org for details.
+  All parts of  the source except where indicated  are distributed under
+  the GNU public licence.  See http://www.opensource.org for details.
 
 */
 
@@ -24,92 +24,92 @@ the GNU public licence.  See http://www.opensource.org for details.
 void Usage()
 {
   printf(BOLD"NAME\n"
-	 FLAT"\tphyml_multi, derived from PhyML,\n"
-	 FLAT"\tA simple, fast, and accurate algorithm to estimate\n"
-	 FLAT"\tlarge phylogenies by maximum likelihood.\n\n"
-	 FLAT"\tStephane Guindon and Olivier Gascuel,\n"
-	 FLAT"\tSystematic Biology 52(5):696-704, 2003.\n"
-	 FLAT"\tPlease cite this paper if you use this software in your publications.\n");
+         FLAT"\tphyml_multi, derived from PhyML,\n"
+         FLAT"\tA simple, fast, and accurate algorithm to estimate\n"
+         FLAT"\tlarge phylogenies by maximum likelihood.\n\n"
+         FLAT"\tStephane Guindon and Olivier Gascuel,\n"
+         FLAT"\tSystematic Biology 52(5):696-704, 2003.\n"
+         FLAT"\tPlease cite this paper if you use this software in your publications.\n");
 
   printf(BOLD"\nCOMMAND-LINE USE\n"
-	 BOLD"\tphyml "FLAT"[ "
-	 LINE"sequences"FLAT" "
-	 LINE"data_type"FLAT" "
-	 LINE"format"FLAT" "
-	 LINE"data_sets"FLAT" "
-	 LINE"bootstrap_sets"FLAT" "
-	 LINE"model"FLAT" "
-	 LINE"\n\t\t[kappa]"FLAT" "
-	 LINE"invar"FLAT" "
-	 LINE"nb_categ"FLAT" "
-	 LINE"alpha"FLAT" "
-	 LINE"tree"FLAT" "
-	 LINE"opt_topology"FLAT" "
-	 LINE"opt_lengths"FLAT" "
-	 LINE"use_HMM"FLAT" "
-	 LINE"nb of trees"FLAT" "
-	 "]\n");
+         BOLD"\tphyml "FLAT"[ "
+         LINE"sequences"FLAT" "
+         LINE"data_type"FLAT" "
+         LINE"format"FLAT" "
+         LINE"data_sets"FLAT" "
+         LINE"bootstrap_sets"FLAT" "
+         LINE"model"FLAT" "
+         LINE"\n\t\t[kappa]"FLAT" "
+         LINE"invar"FLAT" "
+         LINE"nb_categ"FLAT" "
+         LINE"alpha"FLAT" "
+         LINE"tree"FLAT" "
+         LINE"opt_topology"FLAT" "
+         LINE"opt_lengths"FLAT" "
+         LINE"use_HMM"FLAT" "
+         LINE"nb of trees"FLAT" "
+         "]\n");
 
   printf(FLAT"\n\tYou can use phyml with no arguments, in this case change the value of\n"
-	 FLAT"\ta parameter by typing its corresponding character as shown on screen.\n\n"
-	 FLAT"\tYou can alternatively use phyml with the following arguments :\n");
+         FLAT"\ta parameter by typing its corresponding character as shown on screen.\n\n"
+         FLAT"\tYou can alternatively use phyml with the following arguments :\n");
 
   printf(LINE"\n\tsequence_file"
-	 FLAT"\tDNA or Amino-Acids sequence filename (PHYLIP format)\n"
+         FLAT"\tDNA or Amino-Acids sequence filename (PHYLIP format)\n"
 
-	 LINE"\n\tdata type"
-	 FLAT"\t"BOLD"0"FLAT" = DNA | "BOLD"1"FLAT" = Amino-Acids\n"
+         LINE"\n\tdata type"
+         FLAT"\t"BOLD"0"FLAT" = DNA | "BOLD"1"FLAT" = Amino-Acids\n"
 
-	 LINE"\n\tformat"
-	 FLAT"\t\t"BOLD"i"FLAT" = interleaved sequence format | "
-	 BOLD"s"FLAT" = sequential\n"
+         LINE"\n\tformat"
+         FLAT"\t\t"BOLD"i"FLAT" = interleaved sequence format | "
+         BOLD"s"FLAT" = sequential\n"
 
-	 LINE"\n\tdata_sets"
-	 FLAT"\tnumber of data sets to analyse (ex:3)\n"
+         LINE"\n\tdata_sets"
+         FLAT"\tnumber of data sets to analyse (ex:3)\n"
 
-	 LINE"\n\tbootstrap_sets"
-	 FLAT"\tnumber of bootstrap data sets to generate (ex:2)\n"
-	 FLAT"\t\t\tonly works with one data set to analyse\n"
+         LINE"\n\tbootstrap_sets"
+         FLAT"\tnumber of bootstrap data sets to generate (ex:2)\n"
+         FLAT"\t\t\tonly works with one data set to analyse\n"
 
-	 LINE"\n\tmodel"
-	 FLAT"\t\tsubstitution model name\n"
-	 BOLD"\t\t\tJC69 | K2P | F81 | HKY | F84 | TN93 "FLAT"(DNA)\n"
-	 BOLD"\t\t\tJTT | MtREV | Dayhoff | WAG "FLAT"(Amino-Acids)\n"
+         LINE"\n\tmodel"
+         FLAT"\t\tsubstitution model name\n"
+         BOLD"\t\t\tJC69 | K2P | F81 | HKY | F84 | TN93 "FLAT"(DNA)\n"
+         BOLD"\t\t\tJTT | MtREV | Dayhoff | WAG "FLAT"(Amino-Acids)\n"
 
-	 LINE"\n\tkappa"
-	 FLAT"\t\ttransition/transversion ratio, only for DNA sequences,\n"
-	 FLAT"\t\t\ta fixed value (ex:4.0) | "BOLD"e"FLAT" to get the maximum likelihood estimate\n"
+         LINE"\n\tkappa"
+         FLAT"\t\ttransition/transversion ratio, only for DNA sequences,\n"
+         FLAT"\t\t\ta fixed value (ex:4.0) | "BOLD"e"FLAT" to get the maximum likelihood estimate\n"
 
-	 LINE"\n\tinvar"
-	 FLAT"\t\tproportion of invariable sites,\n"
-	 FLAT"\t\t\ta fixed value (ex:0.0) | "BOLD"e"FLAT" to get the maximum likelihood estimate\n"
+         LINE"\n\tinvar"
+         FLAT"\t\tproportion of invariable sites,\n"
+         FLAT"\t\t\ta fixed value (ex:0.0) | "BOLD"e"FLAT" to get the maximum likelihood estimate\n"
 
-	 LINE"\n\tnb_categ"
-	 FLAT"\tnumber of relative substitution rate categories (ex:4)\n"
+         LINE"\n\tnb_categ"
+         FLAT"\tnumber of relative substitution rate categories (ex:4)\n"
 
-	 LINE"\n\talpha"
-	 FLAT"\t\tgamma distribution parameter,\n"
-	 FLAT"\t\t\ta fixed value (ex:1.0) | "BOLD"e"FLAT" to get the maximum likelihood estimate\n"
+         LINE"\n\talpha"
+         FLAT"\t\tgamma distribution parameter,\n"
+         FLAT"\t\t\ta fixed value (ex:1.0) | "BOLD"e"FLAT" to get the maximum likelihood estimate\n"
 
-	 LINE"\n\ttree"
-	 FLAT"\t\tstarting tree filename (Newick format),\n"
-	 FLAT"\t\t\tyour tree filename | "BOLD"BIONJ"FLAT" for a distance-based tree\n"
+         LINE"\n\ttree"
+         FLAT"\t\tstarting tree filename (Newick format),\n"
+         FLAT"\t\t\tyour tree filename | "BOLD"BIONJ"FLAT" for a distance-based tree\n"
 
-	 LINE"\n\topt_topology"
-	 FLAT"\toptimise tree topology ? "BOLD"y | n\n"
+         LINE"\n\topt_topology"
+         FLAT"\toptimise tree topology ? "BOLD"y | n\n"
 
-	 LINE"\n\topt_lengths"
-	 FLAT"\toptimise branch lengths and rate parameters ? "BOLD"y | n\n"
+         LINE"\n\topt_lengths"
+         FLAT"\toptimise branch lengths and rate parameters ? "BOLD"y | n\n"
 
          LINE"\n\tuse_HMM"
-	 FLAT"\t\tuse HMM ? "BOLD"n | y\n"
+         FLAT"\t\tuse HMM ? "BOLD"n | y\n"
 
          LINE"\n\tnumber of trees"
-	 FLAT"\t\tHow many trees (ex:4) ? ");
+         FLAT"\t\tHow many trees (ex:4) ? ");
 
-printf(  FLAT"\n\tExamples\n"
-	 FLAT"\tDNA sequences, no HMM : "BOLD"  ./phyml_multi seqs1 0 i 2 0 HKY 4.0 e 1 1.0 BIONJ y n n 2\n"
-	 FLAT"\n\tAA sequences, HMM :  "BOLD"  ./phyml_multi seqs2 1 i 1 5 JTT 0.0 4 1.0 BIONJ n n y 3\n"FLAT);
+  printf(  FLAT"\n\tExamples\n"
+           FLAT"\tDNA sequences, no HMM : "BOLD"  ./phyml_multi seqs1 0 i 2 0 HKY 4.0 e 1 1.0 BIONJ y n n 2\n"
+           FLAT"\n\tAA sequences, HMM :  "BOLD"  ./phyml_multi seqs2 1 i 1 5 JTT 0.0 4 1.0 BIONJ n n y 3\n"FLAT);
   Exit("");
 }
 
@@ -169,16 +169,16 @@ option *Get_Input(int argc, char **argv)
       break;
     default:
       if (isdigit((int)argv[N_DATATYPE][0]))
-	{
-	  if (atoi(argv[N_DATATYPE])==0 && argc-1==N_NB_PARAMS_DNA)
-	    Get_Input_CommandLine_DNA(input, argc, argv);
-	  else if (atoi(argv[N_DATATYPE])==1 && argc-1==N_NB_PARAMS_AA)
-	    Get_Input_CommandLine_AA(input, argc, argv);
-	  else
-	    Usage();
-	}
+        {
+          if (atoi(argv[N_DATATYPE])==0 && argc-1==N_NB_PARAMS_DNA)
+            Get_Input_CommandLine_DNA(input, argc, argv);
+          else if (atoi(argv[N_DATATYPE])==1 && argc-1==N_NB_PARAMS_AA)
+            Get_Input_CommandLine_AA(input, argc, argv);
+          else
+            Usage();
+        }
       else
-	Usage();
+        Usage();
     }
 
   /*print the parameter values*/
@@ -201,11 +201,11 @@ option *Get_Input(int argc, char **argv)
       printf("ts/tv ratio : \t\t\t\t\t estimated\n");
     else
       {
-	if ((input->mod->whichmodel == 2)|| 
-	   (input->mod->whichmodel == 4)||  
-	   (input->mod->whichmodel == 5)||
-	   (input->mod->whichmodel == 6))
-	  printf("ts/tv ratio : \t\t\t\t\t %f\n", input->mod->kappa);
+        if ((input->mod->whichmodel == 2)|| 
+            (input->mod->whichmodel == 4)||  
+            (input->mod->whichmodel == 5)||
+            (input->mod->whichmodel == 6))
+          printf("ts/tv ratio : \t\t\t\t\t %f\n", input->mod->kappa);
       }
   }
 
@@ -313,15 +313,15 @@ void Get_Input_CommandLine_Common(option *input, int argc, char **argv)
   else
     {
       if((atof(p) < 0.0) || (atof(p) > 1.0))
-	{
-	  Exit("\nErr : the proportion of invariable sites must be a positive number between 0.0 and 1.0\n");
-	}
+        {
+          Exit("\nErr : the proportion of invariable sites must be a positive number between 0.0 and 1.0\n");
+        }
       else
-	{
-	  input->mod->s_opt->opt_pinvar = 0;
-	  input->mod->pinvar = (double)atof(p);
-	  input->mod->invar = (input->mod->pinvar > 0.0+MDBL_MIN) ? 1 : 0;
-	}
+        {
+          input->mod->s_opt->opt_pinvar = 0;
+          input->mod->pinvar = (double)atof(p);
+          input->mod->invar = (input->mod->pinvar > 0.0+MDBL_MIN) ? 1 : 0;
+        }
     }
 
 
@@ -341,7 +341,7 @@ void Get_Input_CommandLine_Common(option *input, int argc, char **argv)
       input->mod->alpha = 1.0;
 
       if(!atof(p) || (input->mod->alpha = (double)atof(p)) < .0)
-	Exit("\nAlpha must be a positive number\n");
+        Exit("\nAlpha must be a positive number\n");
     }
 
 
@@ -429,12 +429,12 @@ void Get_Input_CommandLine_DNA(option *input, int argc, char **argv)
       mod->kappa = 4.0;
 
       if(mod->whichmodel == 6)
-	mod->s_opt->opt_lambda = 1;
+        mod->s_opt->opt_lambda = 1;
       if((mod->whichmodel == 1) ||
-	 (mod->whichmodel == 3) ||
-	 (mod->whichmodel == 7) ||
-	 (mod->whichmodel == 8))
-	mod->s_opt->opt_kappa = 0;
+         (mod->whichmodel == 3) ||
+         (mod->whichmodel == 7) ||
+         (mod->whichmodel == 8))
+        mod->s_opt->opt_kappa = 0;
     }
   else
     {
@@ -442,7 +442,7 @@ void Get_Input_CommandLine_DNA(option *input, int argc, char **argv)
       mod->s_opt->opt_lambda = 0;
 
       if(!atof(p) || (mod->kappa = (double)atof(p)) < .0)
-	Exit("\nThe ts/tv ratio should be a positive number\n");
+        Exit("\nThe ts/tv ratio should be a positive number\n");
     }
 
 
@@ -561,90 +561,95 @@ void Get_Input_Interactive(option *input)
   strcat(input->phyml_lk_file,"_phyml_lk.txt");
 #endif
 
-
+  int readok;
+  
 #ifdef WIN32
 #ifdef EVOLVE
   if(Filexists("evolve_out.txt"));
 #elif OPTIMIZ
   if(Filexists("optimiz_out.txt")) 
 #elif PHYML
-  if(Filexists(input->phyml_stat_file)) 
+    if(Filexists(input->phyml_stat_file)) 
 #endif
 #elif UNIX
 #ifdef EVOLVE
-  if(Filexists("evolve_out"));
+      if(Filexists("evolve_out"));
 #elif OPTIMIZ
   if(Filexists("optimiz_out"))
 #elif PHYML
-  if(Filexists(input->phyml_stat_file))
+    if(Filexists(input->phyml_stat_file))
 #endif
 #endif
-    {
-      printf("\n");
+      {
+        printf("\n");
 #ifdef EVOLVE
-      printf("A file 'evolve_out' already exists\n");
+        printf("A file 'evolve_out' already exists\n");
 #elif OPTIMIZ
-      printf("A file 'optimiz_out' already exists\n");
+        printf("A file 'optimiz_out' already exists\n");
 #elif PHYML
-      printf("A file '%s' already exists\n",input->phyml_stat_file);
+        printf("A file '%s' already exists\n",input->phyml_stat_file);
 #endif
-      printf("Do you want to Replace it or Append to it ?\n");
-      n_trial = 0;
-      do
-	{
-	  printf("Please type R or A > ");
-	  scanf("%c",&choix);
-	  if(choix == '\n') choix = 'r'; 
-	  else getchar();
-	  if(++n_trial>10) Exit("\n");
-	  Uppercase(&choix);
-	}
-      while((choix != 'R') && (choix != 'A'));
-      if(choix == 'R') input->phyml_stat_file_open_mode = 1;
-      else             input->phyml_stat_file_open_mode = 2;
-    }
+        printf("Do you want to Replace it or Append to it ?\n");
+        n_trial = 0;
+        do
+          {
+            printf("Please type R or A > ");
+            readok = scanf("%c",&choix);
+            if (readok == EOF)
+              break;
+            if(choix == '\n') choix = 'r'; 
+            else getchar();
+            if(++n_trial>10) Exit("\n");
+            Uppercase(&choix);
+          }
+        while((choix != 'R') && (choix != 'A'));
+        if(choix == 'R') input->phyml_stat_file_open_mode = 1;
+        else             input->phyml_stat_file_open_mode = 2;
+      }
 
 #ifdef WIN32
 #ifdef EVOLVE
   if(Filexists("evolve_seq.txt"))   
 #elif OPTIMIZ
-  if(Filexists("optimiz_tree.txt")) 
+    if(Filexists("optimiz_tree.txt")) 
 #elif PHYML
-  if(Filexists(input->phyml_tree_file)) 
+      if(Filexists(input->phyml_tree_file)) 
 #endif
 #elif UNIX
 #ifdef EVOLVE
-  if(Filexists("evolve_seq")) 
+        if(Filexists("evolve_seq")) 
 #elif OPTIMIZ
-  if(Filexists("optimiz_tree")) 
+          if(Filexists("optimiz_tree")) 
 #elif PHYML
-  if(Filexists(input->phyml_tree_file)) 
+            if(Filexists(input->phyml_tree_file)) 
 #endif
 #endif
-    {
-      printf("\n");
+              {
+                printf("\n");
 #ifdef EVOLVE
-      printf("A file 'evolve_seq' already exists\n");
+                printf("A file 'evolve_seq' already exists\n");
 #elif OPTIMIZ
-      printf("A file 'optimiz_tree' already exists\n");
+                printf("A file 'optimiz_tree' already exists\n");
 #elif PHYML
-      printf("A file '%s' already exists\n",input->phyml_tree_file);
+                printf("A file '%s' already exists\n",input->phyml_tree_file);
 #endif
-      printf("Do you want to Replace it or Append to it ?\n");
-      n_trial = 0;
-      do
-	{
-	  printf("Please type R or A > ");
-	  scanf("%c",&choix);
-	  if(choix == '\n') choix = 'X'; 
-	  else getchar();
-	  Uppercase(&choix);
-	  if(++n_trial>10) Exit("\n");
-	}
-      while((choix != 'R') && (choix != 'A'));
-      if(choix == 'R') input->phyml_tree_file_open_mode = 1;
-      else             input->phyml_tree_file_open_mode = 2;
-    }
+                printf("Do you want to Replace it or Append to it ?\n");
+                n_trial = 0;
+                do
+                  {
+                    printf("Please type R or A > ");
+                    readok = scanf("%c",&choix);
+                    if (readok == EOF)
+                      break;
+                    if(choix == '\n') choix = 'X'; 
+                    else getchar();
+                    Uppercase(&choix);
+                    if(++n_trial>10) Exit("\n");
+                  }
+                while((choix != 'R') && (choix != 'A'));
+                if(choix == 'R') input->phyml_tree_file_open_mode = 1;
+                else             input->phyml_tree_file_open_mode = 2;
+              }
 
   choix                    = 0;
 
@@ -670,15 +675,15 @@ void Get_Input_Interactive(option *input)
 
 
       printf("  D "
-	     "                                Data type (DNA/AA) "
-	     " %-15s \n",
-	     (input->mod->datatype)?("AA"):("DNA"));
+             "                                Data type (DNA/AA) "
+             " %-15s \n",
+             (input->mod->datatype)?("AA"):("DNA"));
 
 
       printf("  I "
-	     "       Input sequences interleaved (or sequential) "
-	     " %-15s \n",
-	     (input->interleaved)?("interleaved"):("sequential"));
+             "       Input sequences interleaved (or sequential) "
+             " %-15s \n",
+             (input->interleaved)?("interleaved"):("sequential"));
 
 
       strcpy(s,"");
@@ -686,92 +691,92 @@ void Get_Input_Interactive(option *input)
       strcpy(buff,(input->n_data_sets > 1)?("yes"):("no"));
       buff=strcat(buff,(input->n_data_sets > 1)?(s):("\0"));
       printf("  S "
-	     "                        Analyze multiple data sets "
-	     " %-15s \n",buff);
+             "                        Analyze multiple data sets "
+             " %-15s \n",buff);
 
       strcpy(buff,(input->mod->bootstrap > 0)?("yes"):("no"));
       if(input->mod->bootstrap > 0) sprintf(buff+strlen(buff)," (%d replicate%s)",
-					    input->mod->bootstrap,
-					    (input->mod->bootstrap>1)?("s"):(""));
+                                            input->mod->bootstrap,
+                                            (input->mod->bootstrap>1)?("s"):(""));
 
       printf("  B "
-	     "                 Non parametric bootstrap analysis "
-	     " %-15s \n",buff);
+             "                 Non parametric bootstrap analysis "
+             " %-15s \n",buff);
 
       if (!input->mod->datatype)
-	{
-	  if(!strcmp(input->nt_or_cd,"nucleotides"))
-	    {
-	      printf("  M  "
-		     "                 Model of nucleotide substitution "
-		     " %-15s \n", input->modelname);
+        {
+          if(!strcmp(input->nt_or_cd,"nucleotides"))
+            {
+              printf("  M  "
+                     "                 Model of nucleotide substitution "
+                     " %-15s \n", input->modelname);
 
-	      if((input->mod->whichmodel < 8) && (input->mod->whichmodel > 2))
-		printf("  E "
-		       "           Base frequency estimates (empirical/ML) "
-		       " %-15s \n",
-		       (input->mod->s_opt->opt_bfreq)?("ML"):("empirical"));
+              if((input->mod->whichmodel < 8) && (input->mod->whichmodel > 2))
+                printf("  E "
+                       "           Base frequency estimates (empirical/ML) "
+                       " %-15s \n",
+                       (input->mod->s_opt->opt_bfreq)?("ML"):("empirical"));
 
-	      else if(input->mod->whichmodel == 8)
-		{
+              else if(input->mod->whichmodel == 8)
+                {
 
-		printf("  E "
-		       "                 Optimise equilibrium frequencies  "
-		       " %-15s \n",
-		       (input->mod->s_opt->opt_bfreq)?("yes"):("no"));
+                  printf("  E "
+                         "                 Optimise equilibrium frequencies  "
+                         " %-15s \n",
+                         (input->mod->s_opt->opt_bfreq)?("yes"):("no"));
 
-		}
+                }
 
 
-	      if(input->mod->whichmodel == 8)
-		{
-		  printf("  F  "
-			 "                          Equilibrium frequencies "
-			 " %-15s \n",
-			 (input->mod->user_b_freq[0]<.0)?("empirical"):("user defined"));
+              if(input->mod->whichmodel == 8)
+                {
+                  printf("  F  "
+                         "                          Equilibrium frequencies "
+                         " %-15s \n",
+                         (input->mod->user_b_freq[0]<.0)?("empirical"):("user defined"));
 
-		  printf("  K  "
-			 "                             Current custom model "
-			 " %-15s \n", input->mod->custom_mod_string);
+                  printf("  K  "
+                         "                             Current custom model "
+                         " %-15s \n", input->mod->custom_mod_string);
 		
-		  printf("  W  "
-			 "                Optimise relative rate parameters "
-			 " %-15s \n",(input->mod->s_opt->opt_rr_param)?("yes"):("no"));
+                  printf("  W  "
+                         "                Optimise relative rate parameters "
+                         " %-15s \n",(input->mod->s_opt->opt_rr_param)?("yes"):("no"));
 
-		}
+                }
 	      
 
-	    }
-	  else
-	      printf("  M  "
-		     "                      Model of codon substitution "
-		     " %-15s \n", input->modelname);
-	}
+            }
+          else
+            printf("  M  "
+                   "                      Model of codon substitution "
+                   " %-15s \n", input->modelname);
+        }
       else
-	{
-	  printf("  M  "
-		 "                Model of amino-acids substitution "
-		 " %-15s \n", input->modelname);
-	}
+        {
+          printf("  M  "
+                 "                Model of amino-acids substitution "
+                 " %-15s \n", input->modelname);
+        }
       
 
       if ((!input->mod->datatype) && 
-	  ((input->mod->whichmodel == 2)|| 
-	   (input->mod->whichmodel == 4)||  
-	   (input->mod->whichmodel == 5)||
-	   (input->mod->whichmodel == 6)))
-	{
-	  strcpy(s,(input->mod->s_opt->opt_kappa)?("estimated"):("fixed"));
-	  (input->mod->s_opt->opt_kappa)?(strcat(s, "")):(strcat(s," (ts/tv = "));
-	  if (input->mod->s_opt->opt_kappa)
+          ((input->mod->whichmodel == 2)|| 
+           (input->mod->whichmodel == 4)||  
+           (input->mod->whichmodel == 5)||
+           (input->mod->whichmodel == 6)))
+        {
+          strcpy(s,(input->mod->s_opt->opt_kappa)?("estimated"):("fixed"));
+          (input->mod->s_opt->opt_kappa)?(strcat(s, "")):(strcat(s," (ts/tv = "));
+          if (input->mod->s_opt->opt_kappa)
             strcat(s, "");
           else
             sprintf(s+(int)strlen(s),"%3.2f)",input->mod->kappa);
 
-	  printf("  T "
-		 "                     Ts/tv ratio (fixed/estimated) "
-		 " %-15s \n",s);
-	}
+          printf("  T "
+                 "                     Ts/tv ratio (fixed/estimated) "
+                 " %-15s \n",s);
+        }
       
 
       (input->mod->s_opt->opt_pinvar)?(strcpy(s,"estimated")):(strcpy(s,"fixed"));
@@ -782,49 +787,49 @@ void Get_Input_Interactive(option *input)
         sprintf(s+strlen(s),"%3.2f)",input->mod->pinvar);
       
       printf("  V  "
-	     " Proportion of invariable sites (fixed/estimated)"
-	     "  %-15s \n",s);
+             " Proportion of invariable sites (fixed/estimated)"
+             "  %-15s \n",s);
 
 
       printf("  R "
-	     "        One category of substitution rate (yes/no) "
-	     " %-15s \n",
-	     (input->mod->n_catg > 1)?("no"):("yes"));
+             "        One category of substitution rate (yes/no) "
+             " %-15s \n",
+             (input->mod->n_catg > 1)?("no"):("yes"));
 
       if(input->mod->n_catg > 1)
-	{
-	  printf("  C "
-		 "            Number of substitution rate categories "
-		 " %-15d \n",
-		 input->mod->n_catg);
-	}
+        {
+          printf("  C "
+                 "            Number of substitution rate categories "
+                 " %-15d \n",
+                 input->mod->n_catg);
+        }
 
 
       if(input->mod->n_catg > 1)
-	{
-	  strcpy(s,(input->mod->s_opt->opt_alpha)?("estimated"):("fixed"));
-	  (input->mod->s_opt->opt_alpha)?(strcat(s, "")):(strcat(s," (alpha = "));
-	  if (input->mod->s_opt->opt_alpha)
+        {
+          strcpy(s,(input->mod->s_opt->opt_alpha)?("estimated"):("fixed"));
+          (input->mod->s_opt->opt_alpha)?(strcat(s, "")):(strcat(s," (alpha = "));
+          if (input->mod->s_opt->opt_alpha)
             strcat(s, "");
           else
             sprintf(s+strlen(s),"%f)",input->mod->alpha);
   
-	  printf("  A "
-		 "    Gamma distribution parameter (fixed/estimated) "
-		 " %-15s \n",s);
-	}
+          printf("  A "
+                 "    Gamma distribution parameter (fixed/estimated) "
+                 " %-15s \n",s);
+        }
 
 
 #ifdef PHYML
       printf("  U "
-	     "                      Input tree (BIONJ/user tree) "
-	     " %-15s \n",
-	     (!input->inputtree)?("BIONJ"):("user tree"));
+             "                      Input tree (BIONJ/user tree) "
+             " %-15s \n",
+             (!input->inputtree)?("BIONJ"):("user tree"));
 
       printf("  O "
-	     "                            Optimise tree topology "
-	     " %-15s \n",
-	     (input->mod->s_opt->opt_topo)?("yes"):("no"));
+             "                            Optimise tree topology "
+             " %-15s \n",
+             (input->mod->s_opt->opt_topo)?("yes"):("no"));
 
 
 #endif
@@ -834,788 +839,812 @@ void Get_Input_Interactive(option *input)
       (input->seq_len==-1)?((int)strcpy(s,"Reference data set length")):((int)sprintf(s,"l = %d",input->seq_len));
       
       printf("  L "
-	     "                                  Sequence length "
-	     " %-15s \n",s);
+             "                                  Sequence length "
+             " %-15s \n",s);
 #elif PHYML
       if(!input->mod->s_opt->opt_topo)
-	{
-	  printf("  L "
-		 "         Optimise branch lengths & rate parameters "
-		 " %-15s \n",
-		 (input->mod->s_opt->opt_free_param)?("yes"):("no"));
-	}
+        {
+          printf("  L "
+                 "         Optimise branch lengths & rate parameters "
+                 " %-15s \n",
+                 (input->mod->s_opt->opt_free_param)?("yes"):("no"));
+        }
 
 
 
       printf("  H "
-		 "                                         Use HMM ? "
-		 " %-15s \n",
-		 (input->HMM)?("yes"):("no"));
+             "                                         Use HMM ? "
+             " %-15s \n",
+             (input->HMM)?("yes"):("no"));
 
       printf("  P "
-		 "                                  How many trees ? "
-		 " %d \n",input->n_trees);
+             "                                  How many trees ? "
+             " %d \n",input->n_trees);
 
 #endif   
 
       printf("\n");
 
       printf("\nAre these settings correct? "
-	     "(type  Y  or letter for one to change)  ");
+             "(type  Y  or letter for one to change)  ");
 
-      scanf("%c",&choix);
+      readok = scanf("%c",&choix);
+      if (readok==EOF)
+        {}
+      
       if(choix == '\n') choix = 'X'; 
       else getchar(); /* \n */
 
       Uppercase(&choix);
 
       if ((choix == 'Y') || (choix == 'y'))
-	break;
+        break;
 
       switch(choix)
-	{
+        {
 	
 #ifdef PHYML
-	case 'B' :
-	  {
-	    if(input->mod->bootstrap > 0) input->mod->bootstrap = 0;
-	    else
-	      {
-		char *r;
-		char answer;
+        case 'B' :
+          {
+            if(input->mod->bootstrap > 0) input->mod->bootstrap = 0;
+            else
+              {
+                char *r;
+                char answer;
 
 
-		if(input->n_data_sets > 1)
-		  Exit("\n. Bootstrap option is not allowed with multiple data sets\n");
+                if(input->n_data_sets > 1)
+                  Exit("\n. Bootstrap option is not allowed with multiple data sets\n");
 
-		printf("Number of replicates > ");
-		r = (char *)mCalloc(T_MAX_LINE,sizeof(char));
-		Getstring_Stdin(r);
-		n_trial = 0;
-		while((!atoi(r)) || (atoi(r) < 0))
-		  {
-		    if(++n_trial > 10) Exit("\nErr : the number of replicates must be a positive integer\n");
-		    printf("\nThe number of replicates must be a positive integer\n");
-		    printf("Enter a new value > ");
-		    Getstring_Stdin(r);
-		  }
-		input->mod->bootstrap = atoi(r);
+                printf("Number of replicates > ");
+                r = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+                Getstring_Stdin(r);
+                n_trial = 0;
+                while((!atoi(r)) || (atoi(r) < 0))
+                  {
+                    if(++n_trial > 10) Exit("\nErr : the number of replicates must be a positive integer\n");
+                    printf("\nThe number of replicates must be a positive integer\n");
+                    printf("Enter a new value > ");
+                    Getstring_Stdin(r);
+                  }
+                input->mod->bootstrap = atoi(r);
 
-		printf("Print bootstrap trees (and statistics) ? (%s) > ",
-		       (input->print_boot_trees)?("Y/n"):("y/N"));
+                printf("Print bootstrap trees (and statistics) ? (%s) > ",
+                       (input->print_boot_trees)?("Y/n"):("y/N"));
 		
-		scanf("%c",&answer);
-		if(answer == '\n') answer = (input->print_boot_trees)?('Y'):('N');
-		else getchar();
+                readok = scanf("%c",&answer);
+                if (readok == EOF)
+                  {}
+                
+                if(answer == '\n') answer = (input->print_boot_trees)?('Y'):('N');
+                else getchar();
 		
-		switch(answer)
-		  {
-		  case 'Y' : case 'y' : 
-		    {
-		      input->print_boot_trees = 1;
+                switch(answer)
+                  {
+                  case 'Y' : case 'y' : 
+                    {
+                      input->print_boot_trees = 1;
                       strcpy(r,input->seqfile);
-		      input->fp_boot_tree  = Openfile(strcat(r,"_phyml_boot_trees.txt"),1);
+                      input->fp_boot_tree  = Openfile(strcat(r,"_phyml_boot_trees.txt"),1);
                       strcpy(r,input->seqfile);
-		      input->fp_boot_stats = Openfile(strcat(r,"_phyml_boot_stats.txt"),1);
-		      break;
-		    }
-		  case 'N' : case 'n' : 
-		    {
-		      input->print_boot_trees = 0;
-		      input->fp_boot_tree  = NULL;
-		      input->fp_boot_stats = NULL;
-		      break;
-		    }
-		  }
-		Free(r);
-	      }
-	    break;
-	  }
+                      input->fp_boot_stats = Openfile(strcat(r,"_phyml_boot_stats.txt"),1);
+                      break;
+                    }
+                  case 'N' : case 'n' : 
+                    {
+                      input->print_boot_trees = 0;
+                      input->fp_boot_tree  = NULL;
+                      input->fp_boot_stats = NULL;
+                      break;
+                    }
+                  }
+                Free(r);
+              }
+            break;
+          }
 
 
-	case 'U' :
-	  {
-	    if(!input->inputtree) 
-	      {
-		input->inputtree = 1;
-		printf("Enter the name of the tree file > ");
-		Getstring_Stdin(input->inputtreefile);
-		input->fp_input_tree = Openfile(input->inputtreefile,0);
-	      }
-	    else input->inputtree = 0;
-	    break;
-	  }
+        case 'U' :
+          {
+            if(!input->inputtree) 
+              {
+                input->inputtree = 1;
+                printf("Enter the name of the tree file > ");
+                Getstring_Stdin(input->inputtreefile);
+                input->fp_input_tree = Openfile(input->inputtreefile,0);
+              }
+            else input->inputtree = 0;
+            break;
+          }
 #endif
-	case 'O' :
-	  {
-	    input->mod->s_opt->opt_topo = 
-	      (input->mod->s_opt->opt_topo)?(0):(1);
-	  }
-	case 'W' :
-	  {
-	    input->mod->s_opt->opt_rr_param = 
-	    (input->mod->s_opt->opt_rr_param)?(0):(1);
-	    break;
-	  }
+        case 'O' :
+          {
+            input->mod->s_opt->opt_topo = 
+              (input->mod->s_opt->opt_topo)?(0):(1);
+          }
+        case 'W' :
+          {
+            input->mod->s_opt->opt_rr_param = 
+              (input->mod->s_opt->opt_rr_param)?(0):(1);
+            break;
+          }
 
-	case 'K' :
-	  {
-	    int i,j;
-	    char **rr_param,*rr;
-	    model *mod;
-	    int curr_param;
+        case 'K' :
+          {
+            int i,j;
+            char **rr_param,*rr;
+            model *mod;
+            int curr_param;
 	    
-	    if(input->mod->whichmodel == 8)
-	      {
-		rr_param = (char **)mCalloc(5,sizeof(char *));
-		For(i,5) rr_param[i] = (char *)mCalloc(10,sizeof(char));
-		rr = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+            if(input->mod->whichmodel == 8)
+              {
+                rr_param = (char **)mCalloc(5,sizeof(char *));
+                For(i,5) rr_param[i] = (char *)mCalloc(10,sizeof(char));
+                rr = (char *)mCalloc(T_MAX_LINE,sizeof(char));
 		
-		mod = input->mod;
+                mod = input->mod;
 		
-		n_trial = 0;
-		do
-		  {
-		    printf("Enter a new custom model > ");
-		    Getstring_Stdin(input->mod->custom_mod_string);
-		    if(strlen(input->mod->custom_mod_string) == 6)
-		      {
-			For(i,6)
-			  {
-			    while(!isdigit((int)input->mod->custom_mod_string[i]))
-			      {
-				if(++n_trial > 10) Exit("\nErr : this string is not valid !\n");
-				printf("\nThis string is not valid\n");
-				printf("Enter a new model > ");
-				Getstring_Stdin(input->mod->custom_mod_string);
-			      }
-			  }
-			if(i == 6) break;
-		      }
-		    else 
-		      {
-			printf("\nThe string should be of length 6\n");
-			n_trial++;
-		      }
-		  }while(n_trial < 10);
-		if(n_trial == 10) Exit("");
+                n_trial = 0;
+                do
+                  {
+                    printf("Enter a new custom model > ");
+                    Getstring_Stdin(input->mod->custom_mod_string);
+                    if(strlen(input->mod->custom_mod_string) == 6)
+                      {
+                        For(i,6)
+                          {
+                            while(!isdigit((int)input->mod->custom_mod_string[i]))
+                              {
+                                if(++n_trial > 10) Exit("\nErr : this string is not valid !\n");
+                                printf("\nThis string is not valid\n");
+                                printf("Enter a new model > ");
+                                Getstring_Stdin(input->mod->custom_mod_string);
+                              }
+                          }
+                        if(i == 6) break;
+                      }
+                    else 
+                      {
+                        printf("\nThe string should be of length 6\n");
+                        n_trial++;
+                      }
+                  }while(n_trial < 10);
+                if(n_trial == 10) Exit("");
 		
-		Translate_Custom_Mod_String(input->mod);
+                Translate_Custom_Mod_String(input->mod);
 		
-		strcpy(rr_param[0],"A<->C");	  
-		strcpy(rr_param[1],"A<->G");
-		strcpy(rr_param[2],"A<->T");
-		strcpy(rr_param[3],"C<->G");
-		strcpy(rr_param[4],"C<->T");
+                strcpy(rr_param[0],"A<->C");	  
+                strcpy(rr_param[1],"A<->G");
+                strcpy(rr_param[2],"A<->T");
+                strcpy(rr_param[3],"C<->G");
+                strcpy(rr_param[4],"C<->T");
 		
-		printf("\nSet the relative rate values (G<->T is fixed to 1.0) \n");
-		curr_param = 0;
-		For(i,mod->n_diff_rr_param)
-		  {
-		    For(j,mod->n_rr_param_per_cat[i]) 
-		      if(mod->rr_param_num[i][j] == 5) break;
+                printf("\nSet the relative rate values (G<->T is fixed to 1.0) \n");
+                curr_param = 0;
+                For(i,mod->n_diff_rr_param)
+                  {
+                    For(j,mod->n_rr_param_per_cat[i]) 
+                      if(mod->rr_param_num[i][j] == 5) break;
 		    
-		    if(j == mod->n_rr_param_per_cat[i])
-		      {
-			printf("[");
-			For(j,mod->n_rr_param_per_cat[i])
-			  {
-			    printf("%s",rr_param[mod->rr_param_num[i][j]]);
-			    if(j<mod->n_rr_param_per_cat[i]-1) printf(" = ");
-			  }
-			printf("]");
+                    if(j == mod->n_rr_param_per_cat[i])
+                      {
+                        printf("[");
+                        For(j,mod->n_rr_param_per_cat[i])
+                          {
+                            printf("%s",rr_param[mod->rr_param_num[i][j]]);
+                            if(j<mod->n_rr_param_per_cat[i]-1) printf(" = ");
+                          }
+                        printf("]");
 			
-			printf("  (current=%.2f) > ",mod->rr_param_values[i]);
+                        printf("  (current=%.2f) > ",mod->rr_param_values[i]);
 			
-			Getstring_Stdin(rr);
+                        Getstring_Stdin(rr);
 			
-			if(rr[0] != '\0')
-			  {
-			    n_trial = 0;
-			    while((atof(rr) < .0))
-			      {
-				if(++n_trial > 10) 
-				  Exit("\nErr : the value of this parameter must be a positive number\n");
-				printf("The value of this parameter must be a positive number\n");
-				printf("Enter a new value > ");
-				Getstring_Stdin(rr);
-			      }
-			    input->mod->rr_param_values[curr_param] = (double)atof(rr);
-			  }
-			For(j,mod->n_rr_param_per_cat[i])
-			  mod->rr_param[mod->rr_param_num[i][j]] =
-			  mod->rr_param_values+curr_param;
-			curr_param++;
-		      }
-		    else
-		      {
-			For(j,mod->n_rr_param_per_cat[i])
-			  mod->rr_param_values[mod->rr_param_num[i][j]] = 1.0;
-			For(j,mod->n_rr_param_per_cat[i])
-			  mod->rr_param[mod->rr_param_num[i][j]] =
-			  mod->rr_param_values+5;
-		      }
-		  }
+                        if(rr[0] != '\0')
+                          {
+                            n_trial = 0;
+                            while((atof(rr) < .0))
+                              {
+                                if(++n_trial > 10) 
+                                  Exit("\nErr : the value of this parameter must be a positive number\n");
+                                printf("The value of this parameter must be a positive number\n");
+                                printf("Enter a new value > ");
+                                Getstring_Stdin(rr);
+                              }
+                            input->mod->rr_param_values[curr_param] = (double)atof(rr);
+                          }
+                        For(j,mod->n_rr_param_per_cat[i])
+                          mod->rr_param[mod->rr_param_num[i][j]] =
+                          mod->rr_param_values+curr_param;
+                        curr_param++;
+                      }
+                    else
+                      {
+                        For(j,mod->n_rr_param_per_cat[i])
+                          mod->rr_param_values[mod->rr_param_num[i][j]] = 1.0;
+                        For(j,mod->n_rr_param_per_cat[i])
+                          mod->rr_param[mod->rr_param_num[i][j]] =
+                          mod->rr_param_values+5;
+                      }
+                  }
 		
-		For(i,5) Free(rr_param[i]);
-		Free(rr_param);
-		Free(rr);
-	      }
-	    break;
-	  }
+                For(i,5) Free(rr_param[i]);
+                Free(rr_param);
+                Free(rr);
+              }
+            break;
+          }
 
-	case 'F' :
-	  {
-	    int i;
+        case 'F' :
+          {
+            int i;
 	    
-	    if(input->mod->whichmodel == 8)
-	      {
-		if(input->mod->user_b_freq[0] >= .0)
-		  For(i,4) input->mod->user_b_freq[i] = -1.;
-		else
-		  {
-		    char **bases;
-		    char *bs;
-		    double sum;
+            if(input->mod->whichmodel == 8)
+              {
+                if(input->mod->user_b_freq[0] >= .0)
+                  For(i,4) input->mod->user_b_freq[i] = -1.;
+                else
+                  {
+                    char **bases;
+                    char *bs;
+                    double sum;
 
-		    bases = (char **)mCalloc(4,sizeof(char *));
-		    For(i,4) bases[i] = (char *)mCalloc(50,sizeof(char));
-		    bs = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+                    bases = (char **)mCalloc(4,sizeof(char *));
+                    For(i,4) bases[i] = (char *)mCalloc(50,sizeof(char));
+                    bs = (char *)mCalloc(T_MAX_LINE,sizeof(char));
 		    
-		    strcpy(bases[0],"f(A) > ");
-		    strcpy(bases[1],"f(C) > ");
-		    strcpy(bases[2],"f(G) > ");
-		    strcpy(bases[3],"f(T) > ");
+                    strcpy(bases[0],"f(A) > ");
+                    strcpy(bases[1],"f(C) > ");
+                    strcpy(bases[2],"f(G) > ");
+                    strcpy(bases[3],"f(T) > ");
 		    
-		    printf("Set nucleotide frequencies \n");
-		    sum = .0;
-		    For(i,4)
-		      {
-			printf("%s",bases[i]);
+                    printf("Set nucleotide frequencies \n");
+                    sum = .0;
+                    For(i,4)
+                      {
+                        printf("%s",bases[i]);
 		       
-			Getstring_Stdin(bs);
+                        Getstring_Stdin(bs);
 			
-			n_trial = 0;
+                        n_trial = 0;
 
-			while((atof(bs) < .0001) ||
-			      (bs[0] == '\0'))
-			  {
-			    if(++n_trial > 10) 
-			      Exit("\nErr : the value of this parameter must be a positive number\n");
-			    printf("The value of this parameter must be a positive number\n");
-			    printf("Enter a new value > ");
-			    Getstring_Stdin(bs);
-			  }
-			input->mod->user_b_freq[i] = (double)atof(bs);
-			sum += input->mod->user_b_freq[i];
-		      }
+                        while((atof(bs) < .0001) ||
+                              (bs[0] == '\0'))
+                          {
+                            if(++n_trial > 10) 
+                              Exit("\nErr : the value of this parameter must be a positive number\n");
+                            printf("The value of this parameter must be a positive number\n");
+                            printf("Enter a new value > ");
+                            Getstring_Stdin(bs);
+                          }
+                        input->mod->user_b_freq[i] = (double)atof(bs);
+                        sum += input->mod->user_b_freq[i];
+                      }
 		    
-		    For(i,4)
-		      {
-			input->mod->user_b_freq[i] /= sum;			
-		      }
+                    For(i,4)
+                      {
+                        input->mod->user_b_freq[i] /= sum;			
+                      }
 
-		    For(i,4) Free(bases[i]);
-		    Free(bases);
-		    Free(bs);
-		  }
-	      }
-	    break;
-	  }
+                    For(i,4) Free(bases[i]);
+                    Free(bases);
+                    Free(bs);
+                  }
+              }
+            break;
+          }
 
-	case 'E' :
-	  {
-	    if((input->mod->whichmodel > 10) ||
-	       (input->mod->whichmodel < 3)) Exit("\n. Invalid choice...\n");
-	    input->mod->s_opt->opt_bfreq = (input->mod->s_opt->opt_bfreq)?(0):(1);
-	    break;
-	    }
+        case 'E' :
+          {
+            if((input->mod->whichmodel > 10) ||
+               (input->mod->whichmodel < 3)) Exit("\n. Invalid choice...\n");
+            input->mod->s_opt->opt_bfreq = (input->mod->s_opt->opt_bfreq)?(0):(1);
+            break;
+          }
 
-	case 'D' :
-	  {
-	    if(!input->mod->datatype)
-	      {
-		input->mod->datatype = 1;
-		input->mod->stepsize = 1;
-		input->mod->ns = 20;
-		input->mod->whichmodel    = 12;
-		strcpy(input->modelname,"JTT");
-	      }
-	    else
-	      {
-		input->mod->ns = 4;
-		input->mod->datatype  = 0;
-		input->mod->stepsize = 1;
-		input->mod->whichmodel = 4;
-		strcpy(input->modelname,"HKY");
-		strcpy(input->nt_or_cd,"nucleotides");
-	      }
-	    break;
-	  }
+        case 'D' :
+          {
+            if(!input->mod->datatype)
+              {
+                input->mod->datatype = 1;
+                input->mod->stepsize = 1;
+                input->mod->ns = 20;
+                input->mod->whichmodel    = 12;
+                strcpy(input->modelname,"JTT");
+              }
+            else
+              {
+                input->mod->ns = 4;
+                input->mod->datatype  = 0;
+                input->mod->stepsize = 1;
+                input->mod->whichmodel = 4;
+                strcpy(input->modelname,"HKY");
+                strcpy(input->nt_or_cd,"nucleotides");
+              }
+            break;
+          }
 
-	case 'M' :
-	  {
-	    if(!input->mod->datatype)
-	      {
-		if(!strcmp(input->nt_or_cd,"nucleotides"))
-		  {
-		    if(input->mod->whichmodel == 1)
-		      {
-			input->mod->whichmodel = 2;
-			strcpy(input->modelname,"K2P");
-		      }
-		    else if(input->mod->whichmodel == 2)
-		      {
-			input->mod->whichmodel = 3;
-			strcpy(input->modelname,"F81");
-			input->mod->s_opt->opt_kappa = 0;
-		      }
-		    else if(input->mod->whichmodel == 3)
-		      {
-			input->mod->whichmodel = 4;
-			strcpy(input->modelname,"HKY");
-		      }
-		    else if(input->mod->whichmodel == 4)
-		      {
-			input->mod->whichmodel = 5;
-			strcpy(input->modelname,"F84");
-		      }
-		    else if(input->mod->whichmodel == 5)
-		      {
-			input->mod->whichmodel = 6;
-			strcpy(input->modelname,"TN93");
-			if(input->mod->s_opt->opt_kappa) input->mod->s_opt->opt_lambda = 1;
-		      }
-		    else if(input->mod->whichmodel == 6)
-		      {
-			input->mod->whichmodel = 7;
-			strcpy(input->modelname,"GTR");
-			input->mod->s_opt->opt_kappa = 0;
-		      }
-		    else if(input->mod->whichmodel == 7)
-		      {
-			input->mod->whichmodel = 8;
-			strcpy(input->modelname,"custom");
-			input->mod->s_opt->opt_kappa = 0;
-		      }
+        case 'M' :
+          {
+            if(!input->mod->datatype)
+              {
+                if(!strcmp(input->nt_or_cd,"nucleotides"))
+                  {
+                    if(input->mod->whichmodel == 1)
+                      {
+                        input->mod->whichmodel = 2;
+                        strcpy(input->modelname,"K2P");
+                      }
+                    else if(input->mod->whichmodel == 2)
+                      {
+                        input->mod->whichmodel = 3;
+                        strcpy(input->modelname,"F81");
+                        input->mod->s_opt->opt_kappa = 0;
+                      }
+                    else if(input->mod->whichmodel == 3)
+                      {
+                        input->mod->whichmodel = 4;
+                        strcpy(input->modelname,"HKY");
+                      }
+                    else if(input->mod->whichmodel == 4)
+                      {
+                        input->mod->whichmodel = 5;
+                        strcpy(input->modelname,"F84");
+                      }
+                    else if(input->mod->whichmodel == 5)
+                      {
+                        input->mod->whichmodel = 6;
+                        strcpy(input->modelname,"TN93");
+                        if(input->mod->s_opt->opt_kappa) input->mod->s_opt->opt_lambda = 1;
+                      }
+                    else if(input->mod->whichmodel == 6)
+                      {
+                        input->mod->whichmodel = 7;
+                        strcpy(input->modelname,"GTR");
+                        input->mod->s_opt->opt_kappa = 0;
+                      }
+                    else if(input->mod->whichmodel == 7)
+                      {
+                        input->mod->whichmodel = 8;
+                        strcpy(input->modelname,"custom");
+                        input->mod->s_opt->opt_kappa = 0;
+                      }
 
-		    else if(input->mod->whichmodel == 8)
-		      {
-			input->mod->whichmodel = 1;
-			strcpy(input->modelname,"JC69");
-			input->mod->s_opt->opt_kappa = 0;
-		      }
-		  }
-	      }
-	    else
-	      {
-		if(input->mod->whichmodel == 11)
-		  {
-		    input->mod->whichmodel = 12;
-		    strcpy(input->modelname,"JTT");
-		  }
-		else if(input->mod->whichmodel == 12)
-		  {
-		    input->mod->whichmodel = 13;
-		    strcpy(input->modelname,"MtREV");
-		  }
-		else if(input->mod->whichmodel == 13)
-		  {
-		    input->mod->whichmodel = 14;
-		    strcpy(input->modelname,"WAG");
-		  }
-		else if(input->mod->whichmodel == 14)
-		  {
-		    input->mod->whichmodel = 15;
-		    strcpy(input->modelname,"DCMut");
-		  }
-		else if(input->mod->whichmodel == 15)
-		  {
-		    input->mod->whichmodel = 16;
-		    strcpy(input->modelname,"RtREV");
-		  }
-		else if(input->mod->whichmodel == 16)
-		  {
-		    input->mod->whichmodel = 17;
-		    strcpy(input->modelname,"CpREV");
-		  }
-		else if(input->mod->whichmodel == 17)
-		  {
-		    input->mod->whichmodel = 18;
-		    strcpy(input->modelname,"VT");
-		  }
-		else if(input->mod->whichmodel == 18)
-		  {
-		    input->mod->whichmodel = 19;
-		    strcpy(input->modelname,"Blosum62");
-		  }
-		else if(input->mod->whichmodel == 19)
-		  {
-		    input->mod->whichmodel = 20;
-		    strcpy(input->modelname,"MtMam");
-		  }
-		else if(input->mod->whichmodel == 20)
-		  {
-		    input->mod->whichmodel = 11;
-		    strcpy(input->modelname,"Dayhoff");
-		  }
-	      }
-	    break;
-	  }
+                    else if(input->mod->whichmodel == 8)
+                      {
+                        input->mod->whichmodel = 1;
+                        strcpy(input->modelname,"JC69");
+                        input->mod->s_opt->opt_kappa = 0;
+                      }
+                  }
+              }
+            else
+              {
+                if(input->mod->whichmodel == 11)
+                  {
+                    input->mod->whichmodel = 12;
+                    strcpy(input->modelname,"JTT");
+                  }
+                else if(input->mod->whichmodel == 12)
+                  {
+                    input->mod->whichmodel = 13;
+                    strcpy(input->modelname,"MtREV");
+                  }
+                else if(input->mod->whichmodel == 13)
+                  {
+                    input->mod->whichmodel = 14;
+                    strcpy(input->modelname,"WAG");
+                  }
+                else if(input->mod->whichmodel == 14)
+                  {
+                    input->mod->whichmodel = 15;
+                    strcpy(input->modelname,"DCMut");
+                  }
+                else if(input->mod->whichmodel == 15)
+                  {
+                    input->mod->whichmodel = 16;
+                    strcpy(input->modelname,"RtREV");
+                  }
+                else if(input->mod->whichmodel == 16)
+                  {
+                    input->mod->whichmodel = 17;
+                    strcpy(input->modelname,"CpREV");
+                  }
+                else if(input->mod->whichmodel == 17)
+                  {
+                    input->mod->whichmodel = 18;
+                    strcpy(input->modelname,"VT");
+                  }
+                else if(input->mod->whichmodel == 18)
+                  {
+                    input->mod->whichmodel = 19;
+                    strcpy(input->modelname,"Blosum62");
+                  }
+                else if(input->mod->whichmodel == 19)
+                  {
+                    input->mod->whichmodel = 20;
+                    strcpy(input->modelname,"MtMam");
+                  }
+                else if(input->mod->whichmodel == 20)
+                  {
+                    input->mod->whichmodel = 11;
+                    strcpy(input->modelname,"Dayhoff");
+                  }
+              }
+            break;
+          }
 
-	case 'R' :
-	    {
-	      (input->mod->n_catg == 1)?(input->mod->n_catg = 4):(input->mod->n_catg = 1);
-	      break;
-	    }
+        case 'R' :
+          {
+            (input->mod->n_catg == 1)?(input->mod->n_catg = 4):(input->mod->n_catg = 1);
+            break;
+          }
 	  
-	case 'C' :
-	  {
-	    char *c;
-	    printf("Enter your number of categories > ");
-	    c = (char *)mCalloc(T_MAX_LINE,sizeof(char));
-	    Getstring_Stdin(c);
-	    n_trial = 0;
-	    while((!atoi(c)) || (atoi(c) < 0))
-	      {
-		if(++n_trial > 10) Exit("\nErr : the number of categories must be a positive integer\n");
-		printf("\nThe number of categories must be a positive integer\n");
-		printf("Enter a new value > ");
-		Getstring_Stdin(c);
-	      }
-	    input->mod->n_catg = atoi(c);
-	    Free(c);
-	    break;
-	  }
+        case 'C' :
+          {
+            char *c;
+            printf("Enter your number of categories > ");
+            c = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+            Getstring_Stdin(c);
+            n_trial = 0;
+            while((!atoi(c)) || (atoi(c) < 0))
+              {
+                if(++n_trial > 10) Exit("\nErr : the number of categories must be a positive integer\n");
+                printf("\nThe number of categories must be a positive integer\n");
+                printf("Enter a new value > ");
+                Getstring_Stdin(c);
+              }
+            input->mod->n_catg = atoi(c);
+            Free(c);
+            break;
+          }
 	  
-	case 'P' :
-	  {
-	    char *c;
-	    printf("Enter your expected number of trees > ");
-	    c = (char *)mCalloc(T_MAX_LINE,sizeof(char));
-	    Getstring_Stdin(c);
-	    n_trial = 0;
-	    while((!atoi(c)) || (atoi(c) < 0))
-	      {
-		if(++n_trial > 10) Exit("\nErr : the number of trees must be a positive integer\n");
-		printf("\nThe number of trees must be a positive integer\n");
-		printf("Enter a new value > ");
-		Getstring_Stdin(c);
-	      }
-	    input->n_trees = atoi(c);
-	    Free(c);
-	    break;
-	  }
+        case 'P' :
+          {
+            char *c;
+            printf("Enter your expected number of trees > ");
+            c = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+            Getstring_Stdin(c);
+            n_trial = 0;
+            while((!atoi(c)) || (atoi(c) < 0))
+              {
+                if(++n_trial > 10) Exit("\nErr : the number of trees must be a positive integer\n");
+                printf("\nThe number of trees must be a positive integer\n");
+                printf("Enter a new value > ");
+                Getstring_Stdin(c);
+              }
+            input->n_trees = atoi(c);
+            Free(c);
+            break;
+          }
 	  
-	case 'H' :
-	  {
-	    input->HMM = 
-	      (input->HMM)?(0):(1);  
-	    break;
-	  }
+        case 'H' :
+          {
+            input->HMM = 
+              (input->HMM)?(0):(1);  
+            break;
+          }
 	  
-	case 'A' :
-	  {
-	    char answer;
+        case 'A' :
+          {
+            char answer;
 	    
-	    switch(input->mod->s_opt->opt_alpha)
-	      {
-	      case 0 : 
-		{
-		  printf("Optimise alpha ? [Y/n] ");
-		  scanf("%c",&answer);
-		  if(answer == '\n') answer = 'Y';
-		  else getchar();
-		  break;
-		}
-	      case 1 : 
-		{
-		  printf("Optimise alpha ? [N/y] ");
-		  scanf("%c",&answer);
-		  if(answer == '\n') answer = 'N';
-		  else getchar();
-		  break;
-		}
-	      default : Exit("\n");
-	      }
+            switch(input->mod->s_opt->opt_alpha)
+              {
+              case 0 : 
+                {
+                  printf("Optimise alpha ? [Y/n] ");
+                  readok = scanf("%c",&answer);
+                  if (readok == EOF)
+                    {}
+                  if(answer == '\n') answer = 'Y';
+                  else getchar();
+                  break;
+                }
+              case 1 : 
+                {
+                  printf("Optimise alpha ? [N/y] ");
+                  readok = scanf("%c",&answer);
+                  if (readok == EOF)
+                    {}
+                  if(answer == '\n') answer = 'N';
+                  else getchar();
+                  break;
+                }
+              default : Exit("\n");
+              }
 		
-	    n_trial = 0;
-	    while((answer != 'Y') && (answer != 'y') &&
-		  (answer != 'N') && (answer != 'n'))  
-	      {
-		if(++n_trial > 10) Exit("\nErr : wrong answers !");
-		printf("Optimise alpha ? [N/y] ");
-		scanf("%c",&answer);
-		if(answer == '\n') answer = 'N';
-		else getchar();
-	      }
+            n_trial = 0;
+            while((answer != 'Y') && (answer != 'y') &&
+                  (answer != 'N') && (answer != 'n'))  
+              {
+                if(++n_trial > 10) Exit("\nErr : wrong answers !");
+                printf("Optimise alpha ? [N/y] ");
+                readok = scanf("%c",&answer);
+                if (readok == EOF)
+                  {}
+                if(answer == '\n') answer = 'N';
+                else getchar();
+              }
 
-	    switch(answer)
-	      {
-	      case 'Y' : case 'y' : 
-		{
-		  input->mod->s_opt->opt_alpha = 1; 
-		  input->mod->s_opt->opt_free_param = 1;
-		  break;
-		}
-	      case 'N' : case 'n' : 
-		{
-		  char *a;
-		  a = (char *)mCalloc(T_MAX_LINE,sizeof(char));
-		  input->mod->alpha = 10.0;
-		  input->mod->s_opt->opt_alpha = 0; 
-		  printf("Enter your value of alpha > ");
-		  Getstring_Stdin(a);
-		  n_trial = 0;
-		  while((!atof(a)) || (atof(a) < .0))
-		    {
-		      if(++n_trial > 10) Exit("\nErr : alpha must be a positive number\n");
-		      printf("Alpha must be a positive number\n");
-		      printf("Enter a new value > ");
-		      Getstring_Stdin(a);
-		    }
-		  input->mod->alpha = (double)atof(a);
-		  Free(a);
-		  input->mod->s_opt->opt_alpha  = 0;
-		  break;
-		}
-	      }	 
-	    break;
-	  }
+            switch(answer)
+              {
+              case 'Y' : case 'y' : 
+                {
+                  input->mod->s_opt->opt_alpha = 1; 
+                  input->mod->s_opt->opt_free_param = 1;
+                  break;
+                }
+              case 'N' : case 'n' : 
+                {
+                  char *a;
+                  a = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+                  input->mod->alpha = 10.0;
+                  input->mod->s_opt->opt_alpha = 0; 
+                  printf("Enter your value of alpha > ");
+                  Getstring_Stdin(a);
+                  n_trial = 0;
+                  while((!atof(a)) || (atof(a) < .0))
+                    {
+                      if(++n_trial > 10) Exit("\nErr : alpha must be a positive number\n");
+                      printf("Alpha must be a positive number\n");
+                      printf("Enter a new value > ");
+                      Getstring_Stdin(a);
+                    }
+                  input->mod->alpha = (double)atof(a);
+                  Free(a);
+                  input->mod->s_opt->opt_alpha  = 0;
+                  break;
+                }
+              }	 
+            break;
+          }
 
-	case 'T' :
-	  {
-	    char answer;
+        case 'T' :
+          {
+            char answer;
 	    
-	    if((input->mod->datatype)   || 
-	       (input->mod->whichmodel == 1) ||
-	       (input->mod->whichmodel == 3) ||
-	       (input->mod->whichmodel == 7)) 
-	      Exit("\n 'T' is not a valid choice for this model\n");
+            if((input->mod->datatype)   || 
+               (input->mod->whichmodel == 1) ||
+               (input->mod->whichmodel == 3) ||
+               (input->mod->whichmodel == 7)) 
+              Exit("\n 'T' is not a valid choice for this model\n");
 	    
-	    switch(input->mod->s_opt->opt_kappa)
-	      {
-	      case 0 : 
-		{
-		  printf("Optimise ts/tv ratio ? [Y/n] ");
-		  scanf("%c", &answer);
-		  if(answer == '\n') answer = 'Y';
-		  else getchar();
-		  break;
-		}
-	      case 1 : 
-		{
-		  printf("Optimise ts/tv ratio ? [N/y] ");
-		  scanf("%c", &answer);
-		  if(answer == '\n') answer = 'N';
-		  else getchar();
-		  break;
-		}
-	      default : Exit("\n");
-	      }
+            switch(input->mod->s_opt->opt_kappa)
+              {
+              case 0 : 
+                {
+                  printf("Optimise ts/tv ratio ? [Y/n] ");
+                  readok = scanf("%c",&answer);
+                  if (readok == EOF)
+                    {}
+                  if(answer == '\n') answer = 'Y';
+                  else getchar();
+                  break;
+                }
+              case 1 : 
+                {
+                  printf("Optimise ts/tv ratio ? [N/y] ");
+                  readok = scanf("%c",&answer);
+                  if (readok == EOF)
+                    {}
+                  if(answer == '\n') answer = 'N';
+                  else getchar();
+                  break;
+                }
+              default : Exit("\n");
+              }
 
-	    n_trial = 0;
-	    while((answer != 'Y') && (answer != 'y') &&
-		  (answer != 'N') && (answer != 'n'))  
-	      {
-		if(++n_trial > 10) Exit("\nErr : wrong answers !");
-		printf("Optimise ts/tv ratio ? [N/y] ");
-		scanf("%c", &answer);
-		if(answer == '\n') answer = 'N';
-		else getchar();
-	      }
+            n_trial = 0;
+            while((answer != 'Y') && (answer != 'y') &&
+                  (answer != 'N') && (answer != 'n'))  
+              {
+                if(++n_trial > 10) Exit("\nErr : wrong answers !");
+                printf("Optimise ts/tv ratio ? [N/y] ");
+                readok = scanf("%c",&answer);
+                if (readok == EOF)
+                  {}
+                if(answer == '\n') answer = 'N';
+                else getchar();
+              }
 
-	    switch(answer)
-	      {
-	      case 'Y' : case 'y' : 
-		{
-		  input->mod->kappa = 4.0;
-		  input->mod->s_opt->opt_free_param = 1;
-		  input->mod->s_opt->opt_kappa = 1; 
-		  input->mod->s_opt->opt_kappa = 1;
-		  if(input->mod->whichmodel == 6) 
-		    input->mod->s_opt->opt_lambda = 1;
-		  break;
-		}
-	      case 'N' : case 'n' : 
-		{
-		  char *t;
-		  t = (char *)mCalloc(T_MAX_LINE,sizeof(char));
-		  input->mod->s_opt->opt_kappa = 0; 
-		  printf("Enter your value of the ts/tv ratio > ");
-		  Getstring_Stdin(t);
-		  n_trial = 0;
-		  while((!atof(t)) || (atof(t) < .0))
-		    {
-		      if(++n_trial > 10) Exit("\nErr : the ts/tv ratio must be a positive number\n");
-		      printf("The ratio must be a positive number\n");
-		      printf("Enter a new value > ");
-		      Getstring_Stdin(t);
-		    }
-		  input->mod->kappa = (double)atof(t);
-		  input->mod->s_opt->opt_kappa  = 0;
-		  input->mod->s_opt->opt_lambda = 0;
-		  Free(t);		
-		  break;
-		}
-	      }	 
-	    break;
-	  }	  
+            switch(answer)
+              {
+              case 'Y' : case 'y' : 
+                {
+                  input->mod->kappa = 4.0;
+                  input->mod->s_opt->opt_free_param = 1;
+                  input->mod->s_opt->opt_kappa = 1; 
+                  input->mod->s_opt->opt_kappa = 1;
+                  if(input->mod->whichmodel == 6) 
+                    input->mod->s_opt->opt_lambda = 1;
+                  break;
+                }
+              case 'N' : case 'n' : 
+                {
+                  char *t;
+                  t = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+                  input->mod->s_opt->opt_kappa = 0; 
+                  printf("Enter your value of the ts/tv ratio > ");
+                  Getstring_Stdin(t);
+                  n_trial = 0;
+                  while((!atof(t)) || (atof(t) < .0))
+                    {
+                      if(++n_trial > 10) Exit("\nErr : the ts/tv ratio must be a positive number\n");
+                      printf("The ratio must be a positive number\n");
+                      printf("Enter a new value > ");
+                      Getstring_Stdin(t);
+                    }
+                  input->mod->kappa = (double)atof(t);
+                  input->mod->s_opt->opt_kappa  = 0;
+                  input->mod->s_opt->opt_lambda = 0;
+                  Free(t);		
+                  break;
+                }
+              }	 
+            break;
+          }	  
 
-	case 'I' : 
-	  {
-	    if(input->interleaved)
-	      input->interleaved = 0;
-	    else input->interleaved = 1;
-	    break;
-	  }
+        case 'I' : 
+          {
+            if(input->interleaved)
+              input->interleaved = 0;
+            else input->interleaved = 1;
+            break;
+          }
 	  
-	case 'S' :
-	  {
-	    char *c;
+        case 'S' :
+          {
+            char *c;
 
-	    printf("How many data sets > ");
-	    c = (char *)mCalloc(T_MAX_LINE,sizeof(char));
-	    Getstring_Stdin(c);
-	    n_trial = 0;
-	    while((!atoi(c)) || (atoi(c) < 0))
-	      {
-		if(++n_trial > 10) Exit("\nErr : The number of data sets must be a positive integer\n");
-		printf("\nThe number of data sets must be a positive integer\n");
-		printf("Enter a new value > ");
-		Getstring_Stdin(c);
-	      }
-	    input->n_data_sets = atoi(c);
+            printf("How many data sets > ");
+            c = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+            Getstring_Stdin(c);
+            n_trial = 0;
+            while((!atoi(c)) || (atoi(c) < 0))
+              {
+                if(++n_trial > 10) Exit("\nErr : The number of data sets must be a positive integer\n");
+                printf("\nThe number of data sets must be a positive integer\n");
+                printf("Enter a new value > ");
+                Getstring_Stdin(c);
+              }
+            input->n_data_sets = atoi(c);
 
-	    if((input->mod->bootstrap > 1) && (input->n_data_sets > 1))
-	      Exit("\n. Bootstrap option is not allowed with multiple data sets\n");
+            if((input->mod->bootstrap > 1) && (input->n_data_sets > 1))
+              Exit("\n. Bootstrap option is not allowed with multiple data sets\n");
 	    
-	    Free(c);
-	    break;
-	  }
+            Free(c);
+            break;
+          }
 
-	case 'V' : 
-	  {
-	    char answer;
+        case 'V' : 
+          {
+            char answer;
 	    
-	    switch(input->mod->s_opt->opt_pinvar)
-	      {
-	      case 0 : 
-		{
-		  printf("Optimise p-invar ? [Y/n] ");
-		  scanf("%c", &answer);
-		  if(answer == '\n') answer = 'Y';
-		  else getchar();
-		  break;
-		}
-	      case 1 : 
-		{
-		  printf("Optimise p-invar ? [N/y] ");
-		  scanf("%c", &answer);
-		  if(answer == '\n') answer = 'N';
-		  else getchar();
-		  break;
-		}
-	      default : Exit("\n");
-	      }
+            switch(input->mod->s_opt->opt_pinvar)
+              {
+              case 0 : 
+                {
+                  printf("Optimise p-invar ? [Y/n] ");
+                  readok = scanf("%c",&answer);
+                  if (readok == EOF)
+                    {}
+                  if(answer == '\n') answer = 'Y';
+                  else getchar();
+                  break;
+                }
+              case 1 : 
+                {
+                  printf("Optimise p-invar ? [N/y] ");
+                  readok = scanf("%c",&answer);
+                  if (readok == EOF)
+                    {}
+                  if(answer == '\n') answer = 'N';
+                  else getchar();
+                  break;
+                }
+              default : Exit("\n");
+              }
 
-	    n_trial = 0;
-	    while((answer != 'Y') && (answer != 'y') &&
-		  (answer != 'N') && (answer != 'n'))  
-	      {
-		if(++n_trial > 10) Exit("\nErr : wrong answers !");
-		printf("Optimise p-invar ? [N/y] ");
-		scanf("%c", &answer);
-		if(answer == '\n') answer = 'N';
-		else getchar();
-	      }
+            n_trial = 0;
+            while((answer != 'Y') && (answer != 'y') &&
+                  (answer != 'N') && (answer != 'n'))  
+              {
+                if(++n_trial > 10) Exit("\nErr : wrong answers !");
+                printf("Optimise p-invar ? [N/y] ");
+                readok = scanf("%c",&answer);
+                if (readok == EOF)
+                  {}
+                if(answer == '\n') answer = 'N';
+                else getchar();
+              }
 
-	    switch(answer)
-	      {
-	      case 'Y' : case 'y' : 
-		{
-		  input->mod->s_opt->opt_free_param = 1;
-		  input->mod->s_opt->opt_pinvar = 1; 
-		  input->mod->pinvar = 0.2;
-		  input->mod->invar  = 1;
-		  break;
-		}
-	      case 'N' : case 'n' : 
-		{
-		  char *p;
-		  p = (char *)mCalloc(T_MAX_LINE,sizeof(char));
-		  printf("Enter your value of p-invar > ");
-		  Getstring_Stdin(p);
-		  n_trial = 0;
-		  while((atof(p) < 0.0) || (atof(p) > 1.0))
-		    {
-		      if(++n_trial > 10)
-			Exit("\nErr : the proportion of invariable sites must be a positive number between 0.0 and 1.0\n");
-		      printf("The proportion must be a positive number between 0.0 and 1.0\n");
-		      printf("Enter a new value > ");
-		      Getstring_Stdin(p);
-		    }
-		  input->mod->pinvar = (double)atof(p);
+            switch(answer)
+              {
+              case 'Y' : case 'y' : 
+                {
+                  input->mod->s_opt->opt_free_param = 1;
+                  input->mod->s_opt->opt_pinvar = 1; 
+                  input->mod->pinvar = 0.2;
+                  input->mod->invar  = 1;
+                  break;
+                }
+              case 'N' : case 'n' : 
+                {
+                  char *p;
+                  p = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+                  printf("Enter your value of p-invar > ");
+                  Getstring_Stdin(p);
+                  n_trial = 0;
+                  while((atof(p) < 0.0) || (atof(p) > 1.0))
+                    {
+                      if(++n_trial > 10)
+                        Exit("\nErr : the proportion of invariable sites must be a positive number between 0.0 and 1.0\n");
+                      printf("The proportion must be a positive number between 0.0 and 1.0\n");
+                      printf("Enter a new value > ");
+                      Getstring_Stdin(p);
+                    }
+                  input->mod->pinvar = (double)atof(p);
 		  
-		  if(input->mod->pinvar > 0.0+MDBL_MIN) input->mod->invar = 1;
-		  else                             input->mod->invar = 0;
+                  if(input->mod->pinvar > 0.0+MDBL_MIN) input->mod->invar = 1;
+                  else                             input->mod->invar = 0;
 
-		  Free(p);
+                  Free(p);
 
-		  input->mod->s_opt->opt_pinvar = 0;
-		  break;
-		}
-	      }	 
-	    break;
-	  }
+                  input->mod->s_opt->opt_pinvar = 0;
+                  break;
+                }
+              }	 
+            break;
+          }
 
 #ifdef EVOLVE
-	case 'L' :
-	  {
-	    char *len;
-	    len = (char *)mCalloc(T_MAX_LINE,sizeof(char));
-	    printf("Enter the sequence length > ");
-	    Getstring_Stdin(len);
-	    n_trial = 0;
-	    while((!atof(len)) || (atof(len) < 0.0-MDBL_MIN))
-	      {
-		if(++n_trial > 10)
-		  Exit("\nErr : sequence length must be a positive integer \n");
-		printf("Sequence length must be a positive integer \n");
-		printf("Enter a new value > ");
-		Getstring_Stdin(len);
-	      }
-	    input->seq_len = (double)atoi(len);	    
-	    Free(len);
-	    break;
-	  }
+        case 'L' :
+          {
+            char *len;
+            len = (char *)mCalloc(T_MAX_LINE,sizeof(char));
+            printf("Enter the sequence length > ");
+            Getstring_Stdin(len);
+            n_trial = 0;
+            while((!atof(len)) || (atof(len) < 0.0-MDBL_MIN))
+              {
+                if(++n_trial > 10)
+                  Exit("\nErr : sequence length must be a positive integer \n");
+                printf("Sequence length must be a positive integer \n");
+                printf("Enter a new value > ");
+                Getstring_Stdin(len);
+              }
+            input->seq_len = (double)atoi(len);	    
+            Free(len);
+            break;
+          }
 #elif PHYML
-	case 'L' : 
-	  {
-	    input->mod->s_opt->opt_free_param = 
-	      (input->mod->s_opt->opt_free_param)?(0):(1);
+        case 'L' : 
+          {
+            input->mod->s_opt->opt_free_param = 
+              (input->mod->s_opt->opt_free_param)?(0):(1);
 	    
-	    if(!input->mod->s_opt->opt_free_param)
-	      {
-		input->mod->s_opt->opt_alpha      = 0;
-		input->mod->s_opt->opt_kappa      = 0;
-		input->mod->s_opt->opt_lambda     = 0;
-		input->mod->s_opt->opt_bl         = 0;
-		input->mod->s_opt->opt_pinvar     = 0;
-		input->mod->s_opt->opt_rr_param   = 0;
-		input->mod->s_opt->opt_topo       = 0;
-	      }
-	    break;
-	  }
+            if(!input->mod->s_opt->opt_free_param)
+              {
+                input->mod->s_opt->opt_alpha      = 0;
+                input->mod->s_opt->opt_kappa      = 0;
+                input->mod->s_opt->opt_lambda     = 0;
+                input->mod->s_opt->opt_bl         = 0;
+                input->mod->s_opt->opt_pinvar     = 0;
+                input->mod->s_opt->opt_rr_param   = 0;
+                input->mod->s_opt->opt_topo       = 0;
+              }
+            break;
+          }
 
 #endif
 	  
-	default : 
-	  {
-	    printf("Not a valid choice\n");
-	    break;
-	  }
-	}
+        default : 
+          {
+            printf("Not a valid choice\n");
+            break;
+          }
+        }
     }while(1);
   
   if((input->mod->whichmodel == 1) || (input->mod->whichmodel == 3))
