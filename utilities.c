@@ -2718,6 +2718,10 @@ FILE *Openfile(char *filename, int mode)
     
     }
 
+  if (!fp)
+    {
+      printf("File unavailable %s\n",s);
+    }
   /*   Free(s); */
 
   return fp;
