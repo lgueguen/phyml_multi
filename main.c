@@ -51,7 +51,7 @@ int main(int argc, char **argv)
   int num_tree;
   //  double best_loglk;
   int *pid, i;  
-  char numchar[11];
+  char numchar[12];
   int** serv_cli; /* file descriptors for pipes: server speaks to clients */
   int** cli_serv; /* file descriptors for pipes: clients speak to server*/
   // int** serv_cli_end; /* file descriptors for pipes: server speaks to clients to tell them it is soon over*/
