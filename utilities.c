@@ -2721,6 +2721,8 @@ FILE *Openfile(char *filename, int mode)
   if (!fp)
     {
       printf("File unavailable %s\n",s);
+      
+      fflush(stdout);
     }
   /*   Free(s); */
 

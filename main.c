@@ -481,9 +481,11 @@ int main(int argc, char **argv)
                 strcat(starting_tree, numchar);
                 fp_phyml_tree = Openfile(starting_tree,input->phyml_tree_file_open_mode);
                 s_tree = Write_Tree(treeListe[num_tree]);
-                fprintf(fp_phyml_tree,"%s\n",s_tree);
+                if (fp_phyml_tree)
+                  fprintf(fp_phyml_tree,"%s\n",s_tree);
                 Free(s_tree);
-                fclose(fp_phyml_tree);
+                if (fp_phyml_tree)
+                  fclose(fp_phyml_tree);
 
 
 
