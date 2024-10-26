@@ -93,8 +93,8 @@ int main(int argc, char **argv)
      double **lkmat;
   */
   fname = (char *)mCalloc(14,sizeof(char));
-  backup_starting_tree= (char *)mCalloc(14,sizeof(char));
-  starting_tree= (char *)mCalloc(14,sizeof(char));
+  backup_starting_tree= (char *)mCalloc(15,sizeof(char));
+  starting_tree= (char *)mCalloc(15,sizeof(char));
   backup_starting_tree = "startingTree";
   //Modified random seed
   srand(getpid()*time(NULL));

@@ -19,6 +19,8 @@ python PartitioningMM.py simSeqs.phy_phyml_siteLks.txt
 
 This should give you the right answer, in a matter of a few minutes on a single desktop computer.
 
-For any question, contact boussau@biomserv.univ-lyon1.fr
+For any question, contact bastien.boussau@univ-lyon1.fr
+
+
 
 
