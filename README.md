@@ -16,15 +16,6 @@
 . 'cd' to the sources directory,
 . type 'make'
 
-
-### Windows (with Microsoft Visual C++ version 6)
-
-. click on the .\exe\phyml.dsp file
-. click on Build->Rebuild all
-. click on the file 'phyml.exe' that has been 
-  created in the folder .\Release
-
-
 ### OSX (Jaguar or Panther)
 
 . 'cd' to the sources directory
@@ -36,55 +27,55 @@
  
 ### Command line use
 
- 	phyml_multi [ sequences data_type format data_sets bootstrap_sets model [kappa] invar nb_categ alpha tree opt_topology opt_lengths use_HMM nb of trees ]
+ phyml_multi [ sequences data_type format data_sets bootstrap_sets model [kappa] invar nb_categ alpha tree opt_topology opt_lengths use_HMM nb of trees ]
  
- 	You can use phyml_multi with no arguments, in this case change the value of
- 	a parameter by typing its corresponding character as shown on screen.
+ You can use phyml_multi with no arguments, in this case change the value of
+ a parameter by typing its corresponding character as shown on screen.
 
- 	You can alternatively use phyml_multi with the following arguments :
+ You can alternatively use phyml_multi with the following arguments :
  
- - sequence_file	DNA or Amino-Acids sequence filename (PHYLIP format)
+- sequence_file	DNA or Amino-Acids sequence filename (PHYLIP format)
  
- -	data type	0 = DNA | 1 = Amino-Acids
+- data type	0 = DNA | 1 = Amino-Acids
  
- -	format		i = interleaved sequence format | s = sequential
+- format		i = interleaved sequence format | s = sequential
 
- -	data_sets	number of data sets to analyse (ex:3)
+- data_sets	number of data sets to analyse (ex:3)
  
- - bootstrap_sets	number of bootstrap data sets to generate (ex:2)
+- bootstrap_sets	number of bootstrap data sets to generate (ex:2)
  			only works with one data set to analyse
  
-	- model		substitution model name
+- model		substitution model name
  			JC69 | K2P | F81 | HKY | F84 | TN93 (DNA)
  			JTT | MtREV | Dayhoff | WAG (Amino-Acids)
  
- 	- kappa		transition/transversion ratio, only for DNA sequences,
+- kappa		transition/transversion ratio, only for DNA sequences,
  			a fixed value (ex:4.0) | e to get the maximum likelihood estimate
 
- 	- invar		proportion of invariable sites,
+- invar		proportion of invariable sites,
  			a fixed value (ex:0.0) | e to get the maximum likelihood estimate
  
- 	- nb_categ	number of relative substitution rate categories (ex:4)
+- nb_categ	number of relative substitution rate categories (ex:4)
  
-	- alpha		gamma distribution parameter,
+- alpha		gamma distribution parameter,
  			a fixed value (ex:1.0) | e to get the maximum likelihood estimate
- 
- 	- tree		starting tree filename (Newick format),
+
+- tree		starting tree filename (Newick format),
  			your tree filename | BIONJ for a distance-based tree
  
- 	- opt_topology	optimise tree topology ? y | n
+- opt_topology	optimise tree topology ? y | n
  
- 	- opt_lengths	optimise branch lengths and rate parameters ? y | n
+- opt_lengths	optimise branch lengths and rate parameters ? y | n
  
- 	- use_HMM		use HMM ? n | y
+- use_HMM		use HMM ? n | y
  
- 	- number of trees		How many trees (ex:4) ? 
+- number of trees		How many trees (ex:4) ? 
  
- Examples
+### Examples
  
- .DNA sequences, no HMM :   ./phyml_multi seqs1 0 i 2 0 HKY 4.0 e 1 1.0 BIONJ y n n 2
+.DNA sequences, no HMM :   ./phyml_multi seqs1 0 i 2 0 HKY 4.0 e 1 1.0 BIONJ y n n 2
  
- .AA sequences, HMM :    ./phyml_multi seqs2 1 i 1 5 JTT 0.0 4 1.0 BIONJ n n y 3
+.AA sequences, HMM :    ./phyml_multi seqs2 1 i 1 5 JTT 0.0 4 1.0 BIONJ n n y 3
  
 
 ### Posterior analysis
